@@ -1,11 +1,9 @@
-- repo: https://github.com/asottile/seed-isort-config
-  rev: v1.9.3
+# isort
+- repo: https://github.com/pycqa/isort
+  rev: 5.10.1
   hooks:
-  - id: seed-isort-config
-- repo: https://github.com/pre-commit/mirrors-isort
-  rev: v4.3.21
-  hooks:
-  - id: isort
+    - id: isort
+      name: isort (python)
 
 # black
 - repo: https://github.com/ambv/black
