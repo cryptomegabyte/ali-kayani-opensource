@@ -1,4 +1,3 @@
-from attr import fields
 from tortoise import fields, models
 
 class TextSummary(models.Model):

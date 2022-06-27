@@ -11,13 +11,9 @@ app = FastAPI()
 register_tortoise(
     app,
     db_url=environ.get("DATABASE_URL"),
-    modules={
-        "models": [
-            "app.models.tortoise"
-            ],
-    },
-        generate_schemas=True,
-        add_exception_handlers=True
+    modules={"models": ["app.models.tortoise"]},
+    generate_schemas=False,
+    add_exception_handlers=True
 )
 
 #Example route
