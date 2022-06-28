@@ -1,29 +1,41 @@
 # imports
-from os import environ
+import logging
 
 from app.api import ping
-from app.config import Settings, get_settings
+from app.db import init_db
 from fastapi import FastAPI
-from tortoise.contrib.fastapi import register_tortoise
+
+# start the logger
+log = logging.getLogger("uvicorn")
 
 # Main app
 app = FastAPI()
 
-# Creates the application
+
 def create_application() -> FastAPI:
+    """
+    Creates the application
+    Input: None
+    Returns: FastAPI application
+    """
     application = FastAPI()
-
-    register_tortoise(
-        application,
-        db_url=environ.get("DATABASE_URL"),
-        modules={"models": ["app.models.tortoise"]},
-        generate_schemas=False,
-        add_exception_handlers=True,
-    )
-
     application.include_router(ping.router)
 
     return application
 
 
+# Initialises the app
 app = create_application()
+
+# Startup event handler
+@app.on_event("startup")
+async def startup_event() -> None:
+    log.info("Starting up...")
+    init_db(app)
+
+
+# Shutdown event handler
+@app.on_event("shutdown")
+async def shutdown_event() -> None:
+    log.info("Shutting down...")
+    init_db(app)

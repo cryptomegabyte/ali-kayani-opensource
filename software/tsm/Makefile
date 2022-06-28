@@ -9,3 +9,6 @@ down:  docker-compose.yml
 # Runs the tests when the containers are running
 test:
 	docker-compose exec web python3 -m pytest -rP
+
+postgres:
+	docker-compose exec web-db psql -U postgres
