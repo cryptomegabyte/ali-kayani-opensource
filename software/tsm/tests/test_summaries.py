@@ -8,7 +8,7 @@ url = {"url": "https://test.url"}
 
 def test_create_summary(test_app_with_db) -> None:
     """
-    Tests the /summaries/ default route
+    Tests the /summaries/ post default route
     """
 
     "Given: test_app_with_db"
@@ -23,7 +23,7 @@ def test_create_summary(test_app_with_db) -> None:
 
 def test_create_summaries_invalid_json(test_app) -> None:
     """
-    Tests the /summaries/ route for an exception
+    Tests the /summaries/ post route for an exception
     """
 
     "Given: test_app_with_db"
@@ -46,7 +46,7 @@ def test_create_summaries_invalid_json(test_app) -> None:
 
 def test_read_summary(test_app_with_db) -> None:
     """
-    Tests the /summaries/ default route
+    Tests the read /summaries/ post route
     """
 
     "Given: test_app_with_db"
@@ -72,7 +72,7 @@ def test_read_summary(test_app_with_db) -> None:
 
 def test_read_summary_incorrect_id(test_app_with_db):
     """
-    Tests the /summaries/ default route with incorrect id
+    Tests the get /summaries/ default route with incorrect id
     """
 
     "Given: test_app_with_db"
@@ -83,3 +83,20 @@ def test_read_summary_incorrect_id(test_app_with_db):
     # then
     assert response.status_code == 404
     assert response.json()["detail"] == "Summary not found"
+
+
+def test_read_all_summaries(test_app_with_db):
+    """
+    Tests the  /summaries post default route to read all summaries
+    """
+
+    "Given: test_app_with_db"
+
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url["url"]))
+    summary_id = response.json()["id"]
+
+    response = test_app_with_db.get("/summaries/")
+    assert response.status_code == 200
+
+    response_list = response.json()
+    assert len(list(filter(lambda d: d["id"] == summary_id, response_list))) == 1
