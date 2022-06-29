@@ -4,6 +4,7 @@ from app.models.pydantic import SummaryPayloadSchema
 from app.models.tortoise import TextSummary
 
 
+# crud post function
 async def post(payload: SummaryPayloadSchema) -> int:
     summary = TextSummary(
         url=payload.url,
@@ -13,6 +14,7 @@ async def post(payload: SummaryPayloadSchema) -> int:
     return summary.id
 
 
+# crud get function
 async def get(id: int) -> Union[dict, None]:
     summary = await TextSummary.filter(id=id).first().values()
     if summary:

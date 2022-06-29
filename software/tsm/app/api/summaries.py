@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException
 
 router = APIRouter()
 
-
+# default /summary/ route
 @router.post("/", response_model=SummaryResponseSchema, status_code=201)
 async def create_summary(payload: SummaryPayloadSchema) -> SummaryResponseSchema:
     summary_id = await crud.post(payload)
@@ -14,6 +14,7 @@ async def create_summary(payload: SummaryPayloadSchema) -> SummaryResponseSchema
     return response_object
 
 
+# /summary/:id route
 @router.get("/{id}/", response_model=SummarySchema)
 async def read_summary(id: int) -> SummarySchema:
     summary = await crud.get(id)
