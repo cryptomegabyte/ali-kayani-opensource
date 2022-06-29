@@ -10,3 +10,12 @@ class SummaryPayloadSchema(BaseModel):
     """
 
     url: AnyUrl
+
+
+class SummaryResponseSchema(SummaryPayloadSchema):
+    """
+    Schema for summaries response
+    Extends SummaryPayloadSchema
+    """
+
+    id: int
