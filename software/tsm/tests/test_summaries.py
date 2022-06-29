@@ -2,6 +2,9 @@ import json
 
 import pytest
 
+# Define the test url
+url = {"url": "https://test.url"}
+
 
 def test_create_summary(test_app_with_db) -> None:
     """
@@ -11,16 +14,14 @@ def test_create_summary(test_app_with_db) -> None:
     "Given: test_app_with_db"
 
     # when
-    response = test_app_with_db.post(
-        "/summaries/", data=json.dumps({"url": "https://test.url"})
-    )
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url))
 
     # then
     assert response.status_code == 201
-    assert response.json()["url"] == "https://test.url"
+    assert response.json()["url"] == url["url"]
 
 
-def test_create_summaries_invalid_json(test_app):
+def test_create_summaries_invalid_json(test_app) -> None:
     """
     Tests the /summaries/ route for an exception
     """
@@ -41,3 +42,29 @@ def test_create_summaries_invalid_json(test_app):
             }
         ]
     }
+
+
+def test_read_summary(test_app_with_db) -> None:
+    """
+    Tests the /summaries/ default route
+    """
+
+    "Given: test_app_with_db"
+
+    # when
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url))
+
+    summary_id = response.json()["id"]
+    response = test_app_with_db.get(f"/summaries/{summary_id}")
+
+    # then
+    assert response.status_code == 200
+
+    # when
+    response_dict = response.json()
+
+    # then
+    assert response_dict["id"] == summary_id
+    assert response_dict["url"] == url["url"]
+    assert response_dict["summary"]
+    assert response_dict["created_at"]
