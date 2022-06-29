@@ -92,7 +92,7 @@ def test_read_all_summaries(test_app_with_db):
 
     "Given: test_app_with_db"
 
-    response = test_app_with_db.post("/summaries/", data=json.dumps(url["url"]))
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url))
     summary_id = response.json()["id"]
 
     response = test_app_with_db.get("/summaries/")
