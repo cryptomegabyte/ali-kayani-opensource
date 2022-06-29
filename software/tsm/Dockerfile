@@ -4,6 +4,9 @@ FROM python:3.10.1-slim-buster
 # creates the app directory
 RUN mkdir -p /usr/src/app
 
+# create the app user
+RUN addgroup --system app && adduser --system --group app
+
 # sets working directoty
 WORKDIR /usr/src/app
 
