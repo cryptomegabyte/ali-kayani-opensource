@@ -1,3 +1,4 @@
+![Continuous Integration and Delivery](https://github.com/cryptomegabyte/ali-kayani-opensource-python/software/tsm/workflows/Continuous%20Integration%20and%20Delivery/badge.svg?branch=main)
 # ali-kayani-opensource
 
 Hi tech community, for a long time i have been wanting to create something like this where i can share my thoughts through knowledge articles, build actual software projects using TDD and to build devops projects.
