@@ -1,5 +1,4 @@
 venv
-env
 .dockerignore
-Dockerfile
-Dockerfile.prod
+docker/
+db/Dockerfile.db
