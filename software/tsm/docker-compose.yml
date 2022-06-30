@@ -3,7 +3,9 @@ version: '3.8'
 services:
 
   web:
-    build: ./
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.dev
     command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     volumes:
       - /usr/src/app
