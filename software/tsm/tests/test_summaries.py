@@ -2,6 +2,8 @@ import json
 
 import pytest
 
+# =====POST Route Tests=====
+
 # Define the test url
 url = {"url": "https://test.url"}
 
@@ -70,6 +72,9 @@ def test_read_summary(test_app_with_db) -> None:
     assert response_dict["created_at"]
 
 
+# =====GET Route Tests=====
+
+
 def test_read_summary_incorrect_id(test_app_with_db):
     """
     Tests the get /summaries/ default route with incorrect id
@@ -108,6 +113,9 @@ def test_read_all_summaries(test_app_with_db):
     assert len(list(filter(lambda d: d["id"] == summary_id, response_list))) == 1
 
 
+# =====DELETE Route Tests=====
+
+
 def test_remove_summary(test_app_with_db):
     """
     Tests the  /summaries delete route
@@ -139,3 +147,108 @@ def test_remove_summary_incorrect_id(test_app_with_db):
     # then
     assert response.status_code == 404
     assert response.json()["detail"] == "Summary not found"
+
+
+# =====PUT Route Tests=====
+
+summary_data = {**url, "summary": "updated"}
+
+
+def test_update_summary(test_app_with_db):
+    """
+    Tests the  /summaries PUT route
+    """
+
+    "Given: test_app_with_db"
+
+    # when
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url))
+    summary_id = response.json()["id"]
+
+    response = test_app_with_db.put(
+        f"/summaries/{summary_id}/", data=json.dumps(summary_data)
+    )
+
+    # then
+    assert response.status_code == 200
+
+    # when
+    response_dict = response.json()
+
+    # then
+    assert response_dict["id"] == summary_id
+    assert response_dict["url"] == url["url"]
+    assert response_dict["summary"] == "updated!"
+    assert response_dict["created_at"]
+
+
+def test_update_summary_incorrect_id(test_app_with_db):
+    """
+    Tests the  /summaries PUT route with an incorrect id
+    """
+
+    "Given: test_app_with_db"
+
+    # when
+    response = test_app_with_db.put("/summaries/999/", data=json.dumps(summary_data))
+
+    # then
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Summary not found"
+
+
+def test_update_summary_invalid_json(test_app_with_db):
+    """
+    Tests the  /summaries PUT route with invalid json
+    """
+
+    "Given: test_app_with_db"
+
+    # when
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url))
+    summary_id = response.json()["id"]
+
+    response = test_app_with_db.put(f"/summaries/{summary_id}/", data=json.dumps({}))
+
+    # then
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["body", "url"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            },
+            {
+                "loc": ["body", "summary"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            },
+        ]
+    }
+
+
+def test_update_summary_invalid_keys(test_app_with_db):
+    """
+    Tests the  /summaries PUT route with invalid keys
+    """
+
+    "Given: test_app_with_db"
+
+    # when
+    response = test_app_with_db.post("/summaries/", data=json.dumps(url))
+    summary_id = response.json()["id"]
+
+    response = test_app_with_db.put(f"/summaries/{summary_id}/", data=json.dumps(url))
+
+    # then
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "loc": ["body", "summary"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            }
+        ]
+    }
