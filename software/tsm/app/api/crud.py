@@ -26,3 +26,9 @@ async def get(id: int) -> Union[dict, None]:
 async def get_all() -> List:
     summaries = await TextSummary.all().values()
     return summaries
+
+
+# crud delete action
+async def delete(id: int) -> int:
+    summary = await TextSummary.filter(id=id).first().delete()
+    return summary
