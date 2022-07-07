@@ -123,7 +123,7 @@ def test_remove_summary(test_app_with_db):
 
     # then
     assert response.status_code == 200
-    assert response.json() == {"id": summary_id, "url": "https://foo.bar"}
+    assert response.json() == {"id": summary_id, "url": url["url"]}
 
 
 def test_remove_summary_incorrect_id(test_app_with_db):
