@@ -22,4 +22,6 @@ test:
 testcov:
 	docker-compose exec web python -m pytest --cov="."
 
-	
+# runs pre-commit
+precommit:
+	pre-commit run --all-files
