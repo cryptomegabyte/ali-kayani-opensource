@@ -151,7 +151,7 @@ def test_remove_summary_incorrect_id(test_app_with_db):
 
 # =====PUT Route Tests=====
 
-summary_data = {**url, "summary": "updated"}
+summary_data = {**url, "summary": "updated!"}
 
 
 def test_update_summary(test_app_with_db):
