@@ -19,3 +19,12 @@ class SummaryResponseSchema(SummaryPayloadSchema):
     """
 
     id: int
+
+
+class SummaryUpdatePayloadSchema(SummaryPayloadSchema):
+    """
+    Schema for summaries update payload
+    Extends SummaryPayloadSchema
+    """
+
+    summary: str
