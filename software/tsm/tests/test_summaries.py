@@ -45,6 +45,13 @@ def test_create_summaries_invalid_json(test_app) -> None:
         ]
     }
 
+    # when
+    response = test_app.post("/summaries/", data=json.dumps({"url": "invalid://url"}))
+
+    # then
+    assert response.status_code == 422
+    assert response.json()["detail"][0]["msg"] == "URL scheme not permitted"
+
 
 def test_read_summary(test_app_with_db) -> None:
     """
