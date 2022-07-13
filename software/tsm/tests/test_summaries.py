@@ -290,3 +290,10 @@ def test_update_summary_invalid_keys(test_app_with_db):
             }
         ]
     }
+
+    response = test_app_with_db.put(
+        f"/summaries/{summary_id}/",
+        data=json.dumps({"url": "invalid", "summary": "updated!"}),
+    )
+    assert response.status_code == 422
+    assert response.json()["detail"][0]["msg"] == "invalid or missing URL scheme"
