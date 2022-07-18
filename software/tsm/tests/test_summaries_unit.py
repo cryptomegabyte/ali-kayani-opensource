@@ -11,7 +11,7 @@ def test_mocked_create_summary(test_app, monkeypatch) -> None:
     Tests the /summaries/ post default route
     """
 
-    "Given: test_app_with_db"
+    "Given: test_app"
 
     test_request_payload = {"url": "https://foo.bar"}
     test_response_payload = {"id": 1, "url": "https://foo.bar"}
@@ -34,7 +34,7 @@ def test_create_summaries_invalid_json(test_app) -> None:
     Tests the /summaries/ post route for an exception
     """
 
-    "Given: test_app_with_db"
+    "Given: test_app"
 
     # when
     response = test_app.post("/summaries/", data=json.dumps({}))
@@ -64,7 +64,7 @@ def test_mocked_read_summary(test_app, monkeypatch) -> None:
     Tests the get /summaries/ default route with incorrect id
     """
 
-    "Given: test_app_with_db"
+    "Given: test_app"
 
     test_data = {
         "id": 1,
@@ -91,7 +91,7 @@ def test_mocked_read_summary_incorrect_id(test_app, monkeypatch) -> None:
     Tests the  /summaries delete route with incorrect id
     """
 
-    "Given: test_app_with_db"
+    "Given: test_app"
 
     async def mock_get(id: int) -> None:
         return None
@@ -106,8 +106,39 @@ def test_mocked_read_summary_incorrect_id(test_app, monkeypatch) -> None:
     assert response.json()["detail"] == "Summary not found"
 
 
-def test_read_all_summaries(test_app, monkeypatch):
-    pass
+def test_mock_read_all_summaries(test_app, monkeypatch) -> None:
+    """
+    Tests the  /summaries post default route to read all summaries
+    """
+
+    "Given: test_app"
+
+    test_data = [
+        {
+            "id": 1,
+            "url": "https://foo.bar",
+            "summary": "summary",
+            "created_at": datetime.utcnow().isoformat(),
+        },
+        {
+            "id": 2,
+            "url": "https://testdrivenn.io",
+            "summary": "summary",
+            "created_at": datetime.utcnow().isoformat(),
+        },
+    ]
+
+    async def mock_get_all() -> dict:
+        return test_data
+
+    monkeypatch.setattr(crud, "get_all", mock_get_all)
+
+    # when
+    response = test_app.get("/summaries/")
+
+    # then
+    assert response.status_code == 200
+    assert response.json() == test_data
 
 
 def test_remove_summary(test_app, monkeypatch):
