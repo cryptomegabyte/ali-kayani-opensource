@@ -122,7 +122,7 @@ def test_mock_read_all_summaries(test_app, monkeypatch) -> None:
         },
         {
             "id": 2,
-            "url": "https://testdrivenn.io",
+            "url": "https://https://github.com/cryptomegabyte/ali-kayani-opensource-python",
             "summary": "summary",
             "created_at": datetime.utcnow().isoformat(),
         },
@@ -141,12 +141,54 @@ def test_mock_read_all_summaries(test_app, monkeypatch) -> None:
     assert response.json() == test_data
 
 
-def test_remove_summary(test_app, monkeypatch):
-    pass
+def test_mock_remove_summary(test_app, monkeypatch) -> None:
+    """
+    Tests the  /summaries delete route
+    """
+
+    "Given: test_app"
+
+    async def mock_get(id: int) -> dict:
+        return {
+            "id": 1,
+            "url": "https://foo.bar",
+            "summary": "summary",
+            "created_at": datetime.utcnow().isoformat(),
+        }
+
+    monkeypatch.setattr(crud, "get", mock_get)
+
+    async def mock_delete(id: int) -> int:
+        return id
+
+    monkeypatch.setattr(crud, "delete", mock_delete)
+
+    # when
+    response = test_app.delete("/summaries/1/")
+
+    # then
+    assert response.status_code == 200
+    assert response.json() == {"id": 1, "url": "https://foo.bar"}
 
 
-def test_remove_summary_incorrect_id(test_app, monkeypatch):
-    pass
+def test_mock_remove_summary_incorrect_id(test_app, monkeypatch) -> None:
+    """
+    Tests the  /summaries delete route with incorrect id
+    """
+
+    "Given: test_app"
+
+    async def mock_get(id: int) -> None:
+        return None
+
+    monkeypatch.setattr(crud, "get", mock_get)
+
+    # when
+    response = test_app.delete("/summaries/999/")
+
+    # then
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Summary not found"
 
 
 def test_update_summary(test_app, monkeypatch):
