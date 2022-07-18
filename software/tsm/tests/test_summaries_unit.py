@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import pytest
-from app.api import crud
+from app.api import crud, summaries
 from app.models.pydantic import SummaryPayloadSchema
 
 
@@ -20,6 +20,11 @@ def test_mocked_create_summary(test_app, monkeypatch) -> None:
         return 1
 
     monkeypatch.setattr(crud, "post", mock_post)
+
+    def mock_generate_summary(summary_id: int, url) -> dict:
+        return None
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     # when
     response = test_app.post("/summaries/", data=json.dumps(test_request_payload))

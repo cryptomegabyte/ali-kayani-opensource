@@ -1,6 +1,9 @@
 import json
+from datetime import datetime
 
 import pytest
+from app.api import summaries
+from pydantic import AnyUrl
 
 # =====POST Route Tests=====
 
@@ -8,12 +11,17 @@ import pytest
 url = {"url": "https://test.url"}
 
 
-def test_create_summary(test_app_with_db) -> None:
+def test_create_summary(test_app_with_db, monkeypatch) -> None:
     """
     Tests the /summaries/ post default route
     """
 
     "Given: test_app_with_db"
+
+    def mock_generate_summary(summary_id: int, url: AnyUrl):
+        return None
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     # when
     response = test_app_with_db.post("/summaries/", data=json.dumps(url))
@@ -53,12 +61,24 @@ def test_create_summaries_invalid_json(test_app) -> None:
     assert response.json()["detail"][0]["msg"] == "URL scheme not permitted"
 
 
-def test_read_summary(test_app_with_db) -> None:
+def test_read_summary(test_app_with_db, monkeypatch) -> None:
     """
     Tests the read /summaries/ post route
     """
 
     "Given: test_app_with_db"
+
+    test_data = {
+        "id": 1,
+        "url": "https://foo.bar",
+        "summary": "summary",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+
+    def mock_generate_summary(summary_id: int, url: AnyUrl) -> dict:
+        return test_data
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     # when
     response = test_app_with_db.post("/summaries/", data=json.dumps(url))
@@ -75,8 +95,8 @@ def test_read_summary(test_app_with_db) -> None:
     # then
     assert response_dict["id"] == summary_id
     assert response_dict["url"] == url["url"]
-    assert response_dict["summary"]
-    assert response_dict["created_at"]
+    assert response_dict["summary"] == ""
+    assert "created_at" in response_dict
 
 
 # =====GET Route Tests=====
@@ -112,12 +132,24 @@ def test_read_summary_incorrect_id(test_app_with_db):
     }
 
 
-def test_read_all_summaries(test_app_with_db):
+def test_read_all_summaries(test_app_with_db, monkeypatch) -> None:
     """
     Tests the  /summaries post default route to read all summaries
     """
 
     "Given: test_app_with_db"
+
+    test_data = {
+        "id": 1,
+        "url": "https://foo.bar",
+        "summary": "summary",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+
+    def mock_generate_summary(summary_id: int, url: AnyUrl) -> None:
+        return test_data
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     response = test_app_with_db.post("/summaries/", data=json.dumps(url))
     summary_id = response.json()["id"]
@@ -138,12 +170,17 @@ def test_read_all_summaries(test_app_with_db):
 # =====DELETE Route Tests=====
 
 
-def test_remove_summary(test_app_with_db):
+def test_remove_summary(test_app_with_db, monkeypatch) -> None:
     """
     Tests the  /summaries delete route
     """
 
     "Given: test_app_with_db"
+
+    def mock_generate_summary(summary_id: int, url) -> None:
+        return None
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     # when
     response = test_app_with_db.post("/summaries/", data=json.dumps(url))
@@ -192,12 +229,24 @@ def test_remove_summary_incorrect_id(test_app_with_db):
 summary_data = {**url, "summary": "updated!"}
 
 
-def test_update_summary(test_app_with_db):
+def test_update_summary(test_app_with_db, monkeypatch) -> None:
     """
     Tests the  /summaries PUT route
     """
 
     "Given: test_app_with_db"
+
+    test_data = {
+        "id": 1,
+        "url": "https://foo.bar",
+        "summary": "summary",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+
+    def mock_generate_summary(summary_id: int, url) -> dict:
+        return test_data
+
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     # when
     response = test_app_with_db.post("/summaries/", data=json.dumps(url))
@@ -217,7 +266,7 @@ def test_update_summary(test_app_with_db):
     assert response_dict["id"] == summary_id
     assert response_dict["url"] == url["url"]
     assert response_dict["summary"] == "updated!"
-    assert response_dict["created_at"]
+    assert "created_at" in response_dict
 
 
 @pytest.mark.parametrize(
@@ -275,7 +324,7 @@ def test_update_summary(test_app_with_db):
 )
 def test_update_summary_invalid(
     test_app_with_db, summary_id, payload, status_code, detail
-):
+) -> None:
     """
     Tests the  /summaries PUT route with invalid data
     """
@@ -292,7 +341,7 @@ def test_update_summary_invalid(
     assert response.json()["detail"] == detail
 
 
-def test_update_summary_invalid_url(test_app):
+def test_update_summary_invalid_url(test_app) -> None:
     """
     Tests the  /summaries PUT route with invalid url
     """
