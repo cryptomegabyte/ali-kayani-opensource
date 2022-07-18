@@ -16,4 +16,4 @@ Feel free to use anything you see here in your own projects.
 
 ## TSM
 
-[TODO]
+Creates a real-time text summarization service microservice used for creating article summaries from a given URL...[In progres...]
