@@ -10,6 +10,14 @@ down:  docker-compose.yml
 mig:
 	docker-compose exec web aerich upgrade
 
+# Logs into the web container
+login_web:
+	docker-compose exec web bash
+
+# Logs into the postgres db
+login_db:
+	docker-compose exec web-db psql -U postgres
+
 # Allows the user to log into postgres when container is running
 postgres:
 	docker-compose exec web-db psql -U postgres
