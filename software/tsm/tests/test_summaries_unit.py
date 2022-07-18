@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import pytest
-from app.api import crud, summaries
+from app.api import crud
 from app.models.pydantic import SummaryPayloadSchema
 
 
@@ -191,8 +191,32 @@ def test_mock_remove_summary_incorrect_id(test_app, monkeypatch) -> None:
     assert response.json()["detail"] == "Summary not found"
 
 
-def test_update_summary(test_app, monkeypatch):
-    pass
+def test_mock_update_summary(test_app, monkeypatch) -> None:
+    """
+    Tests the  /summaries PUT route
+    """
+
+    "Given: test_app"
+
+    test_request_payload = {"url": "https://foo.bar", "summary": "updated"}
+    test_response_payload = {
+        "id": 1,
+        "url": "https://foo.bar",
+        "summary": "summary",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+
+    async def mock_put(id: int, payload: SummaryPayloadSchema) -> dict:
+        return test_response_payload
+
+    monkeypatch.setattr(crud, "put", mock_put)
+
+    # when
+    response = test_app.put("/summaries/1/", data=json.dumps(test_request_payload))
+
+    # then
+    assert response.status_code == 200
+    assert response.json() == test_response_payload
 
 
 @pytest.mark.parametrize(
