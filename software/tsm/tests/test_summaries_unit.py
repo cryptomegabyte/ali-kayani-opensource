@@ -3,9 +3,10 @@ from datetime import datetime
 
 import pytest
 from app.api import crud, summaries
+from app.models.pydantic import SummaryPayloadSchema
 
 
-def test_mocked_create_summary(test_app, monkeypatch):
+def test_mocked_create_summary(test_app, monkeypatch) -> None:
     """
     Tests the /summaries/ post default route
     """
@@ -15,7 +16,7 @@ def test_mocked_create_summary(test_app, monkeypatch):
     test_request_payload = {"url": "https://foo.bar"}
     test_response_payload = {"id": 1, "url": "https://foo.bar"}
 
-    async def mock_post(payload):
+    async def mock_post(payload: SummaryPayloadSchema) -> int:
         return 1
 
     monkeypatch.setattr(crud, "post", mock_post)
@@ -58,8 +59,31 @@ def test_create_summaries_invalid_json(test_app) -> None:
     assert response.json()["detail"][0]["msg"] == "URL scheme not permitted"
 
 
-def test_mocked_read_summary(test_app, monkeypatch):
-    pass
+def test_mocked_read_summary(test_app, monkeypatch) -> None:
+    """
+    Tests the get /summaries/ default route with incorrect id
+    """
+
+    "Given: test_app_with_db"
+
+    test_data = {
+        "id": 1,
+        "url": "https://foo.bar",
+        "summary": "summary",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+
+    async def mock_get(id: int) -> dict:
+        return test_data
+
+    monkeypatch.setattr(crud, "get", mock_get)
+
+    # when
+    response = test_app.get("/summaries/1/")
+
+    # then
+    assert response.status_code == 200
+    assert response.json() == test_data
 
 
 def test_read_summary_incorrect_id(test_app, monkeypatch):
