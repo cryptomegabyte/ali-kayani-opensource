@@ -11,9 +11,13 @@ The aim of this repo is:
 
 Feel free to use anything you see here in your own projects.
 
+# Repo structure
 
-# Software
-
+```
+articles/ [TODO]
+software/
+    tsm/
+```
 ## TSM
 
-Creates a real-time text summarization service microservice used for creating article summaries from a given URL...[In progres...]
+The text summarisation microservice (tsm for short) is a production ready python project which uses fastapi and postgres to consume a news end point. Head over to the the `tsm/` folder to learn more.
