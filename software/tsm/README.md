@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Python, FastAPI, POSTgres, docker, github actions, openapi, this project has it all! The idea was to create a production ready `api` using TDD which can easily be cloned and changed to suit your needs.
+Python, FastAPI, Postgres, docker, github actions, openapi, this project has it all! The idea was to create a production ready `api` using TDD which can easily be cloned and changed to suit your needs.
 
-I was fascinated by FastApi, and speared on with my love for Python and docker, i dived right on in to build this beauty. Alright, enough of the small talk, let's take this `baby` for a spin.
+I was fascinated by FastApi, and speared on with my love for Python and docker, I dived right on in to build this beauty. Alright, enough of the small talk, let's take this `baby` for a spin.
 
 # Pre-requisites
 
-I am assuming you (the reader) have the following installed:
+I am assuming you, the reader have the following installed:
 
 - [Python](https://www.python.org/) 3.9 or higher. (This app was developed using python 3.9)
 - [Docker](https://docs.docker.com/engine/install/)
@@ -22,8 +22,6 @@ When i put this app together i used `ubuntu wsl`. It should work just fine on li
 # Running the app
 
 I have used [make](https://makefiletutorial.com/) keep things simple. The app uses docker images for development and production.
-
-## Locally
 
 1. Create a local environment: `python -m venv venv`.
 2. Activate your local environment: `. venv/bin/activate` or `source venv/bin/activate`.
@@ -54,7 +52,7 @@ The system us now up and running.
 
 Open your browser and go to the following url: `http://localhost:8004/docs`. You should see the openapi spec.
 
-### Test drive
+## Test drive
 
 Let's take it for a test drive. All these commands are issued from the command line.
 
