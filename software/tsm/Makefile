@@ -37,3 +37,11 @@ make test_parallel:
 # runs pre-commit
 precommit:
 	pre-commit run --all-files
+
+# runs production docker file locally
+start_local_prod:
+	docker build -f docker/Dockerfile.prod -t web .
+	docker run -d --name tsm-prod -e PORT=8765 -e DATABASE_URL=sqlite://sqlite.db -p 5003:8765 web:latest
+
+stop_local_prod:
+	docker rm tsm-prod -f
