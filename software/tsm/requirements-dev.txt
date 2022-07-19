@@ -10,3 +10,4 @@ gunicorn==20.1.0
 pytest-cov==3.0.0
 pytest-xdist==2.5.0
 newspaper3k==0.2.8
+httpie
