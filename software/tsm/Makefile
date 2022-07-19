@@ -31,7 +31,7 @@ testcov:
 	docker-compose exec web python -m pytest --cov="."
 
 # run tests in parallel
-make test_parallel:
+test_parallel:
 	docker-compose exec web pytest -rP -k "unit" -n auto
 
 # runs pre-commit
