@@ -1,5 +1,5 @@
 # Brings the app up
-up: docker-compose.yml	requirements.txt docker/Dockerfile.dev	db/Dockerfile.db
+up: docker-compose.yml	requirements-dev.txt docker/Dockerfile.dev	db/Dockerfile.db
 	docker-compose up -d --build
 
 # Stops the app
@@ -43,5 +43,6 @@ start_local_prod:
 	docker build -f docker/Dockerfile.prod -t web .
 	docker run -d --name tsm-prod -e PORT=8765 -e DATABASE_URL=sqlite://sqlite.db -p 5003:8765 web:latest
 
+# stops production docker file from running locally
 stop_local_prod:
 	docker rm tsm-prod -f
