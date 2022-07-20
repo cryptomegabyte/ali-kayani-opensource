@@ -4,10 +4,10 @@ dev_requirements:
 precommit:
 	pre-commit run --all-files
 
-runcontainers:
-	docker run --name some-postgres -p 5432:5432 \
+run_containers:
+	docker run --name taxi-postgres -p 5432:5432 \
     -e POSTGRES_USER=taxi -e POSTGRES_DB=taxi -e POSTGRES_PASSWORD=taxi -d postgres
-	docker run --name some-redis -p 6379:6379 -d redis
+	docker run --name taxi-redis -p 6379:6379 -d redis
 	docker exec -it some-redis redis-cli ping
 
 mig:
@@ -19,5 +19,9 @@ create_superuser:
 runserver:
 	python server/manage.py runserver
 
-cleancontainers:
+stop_containers:
+	docker stop taxi-postgres
+	docker stop taxi-redis
+
+clean_containers:
 	docker system prune -af
