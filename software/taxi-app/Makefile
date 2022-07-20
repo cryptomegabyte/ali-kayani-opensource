@@ -3,3 +3,6 @@ dev_requirements:
 
 precommit:
 	pre-commit run --all-files
+
+runserver:
+	python server/manage.py runserver
