@@ -10,5 +10,14 @@ runcontainers:
 	docker run --name some-redis -p 6379:6379 -d redis
 	docker exec -it some-redis redis-cli ping
 
+mig:
+	python server/manage.py migrate
+
+create_superuser:
+	python server/manage.py createsuperuser
+
 runserver:
 	python server/manage.py runserver
+
+cleancontainers:
+	docker system prune -af
