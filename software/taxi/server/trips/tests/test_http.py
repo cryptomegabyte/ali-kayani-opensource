@@ -1,9 +1,18 @@
+from base64 import b64decode
+from json import loads
+
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
 
 PASSWORD = "pAssw0rd!"
+
+# helper function
+def create_user(username="user@example.com", password=PASSWORD):  # new
+    return get_user_model().objects.create_user(
+        username=username, first_name="Test", last_name="User", password=password
+    )
 
 
 class AuthenticationTest(APITestCase):
@@ -57,3 +66,29 @@ class AuthenticationTest(APITestCase):
         # then
         self.assertEqual(status.HTTP_400_BAD_REQUEST, response.status_code)
         assert error == "Passwords must match."
+
+    def test_user_can_log_in(self):
+        """
+        Tests if the user can log in successfully
+        """
+        user = create_user()
+        response = self.client.post(
+            reverse("log_in"),
+            data={
+                "username": user.username,
+                "password": PASSWORD,
+            },
+        )
+
+        # Parse payload data from access token.
+        access = response.data["access"]
+        header, payload, signature = access.split(".")
+        decoded_payload = b64decode(f"{payload}==")
+        payload_data = loads(decoded_payload)
+
+        self.assertEqual(status.HTTP_200_OK, response.status_code)
+        self.assertIsNotNone(response.data["refresh"])
+        self.assertEqual(payload_data["id"], user.id)
+        self.assertEqual(payload_data["username"], user.username)
+        self.assertEqual(payload_data["first_name"], user.first_name)
+        self.assertEqual(payload_data["last_name"], user.last_name)
