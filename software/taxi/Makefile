@@ -28,3 +28,6 @@ stop_containers:
 
 clean_containers:
 	docker system prune -af
+
+tests:
+	python server/manage.py test trips.tests
