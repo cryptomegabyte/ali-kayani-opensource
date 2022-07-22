@@ -1,5 +1,5 @@
-dev_requirements:
-	python -m pip install pre-commit
+requirements:
+	python -m pip install -r requirements.txt
 
 precommit:
 	pre-commit run --all-files
