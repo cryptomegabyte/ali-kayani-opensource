@@ -10,6 +10,9 @@ run_containers:
 	docker run --name taxi-redis -p 6379:6379 -d redis
 	docker exec -it taxi-redis redis-cli ping
 
+set_exports:
+	export PGDATABASE=taxi PGUSER=taxi PGPASSWORD=taxi
+
 mig:
 	python server/manage.py migrate
 
