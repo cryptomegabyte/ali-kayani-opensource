@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Python, FastAPI, Postgres, docker, github actions, openapi, this project has it all! The idea was to create a production ready `api` using TDD which can easily be cloned and changed to suit your needs.
+Python, FastAPI, Postgres, docker, github actions, openapi, pytest, this project has it all! The idea was to create a production ready `api` using TDD which can easily be cloned and changed to suit your needs.
 
 I was fascinated by FastApi, and speared on with my love for Python and docker, I dived right on in to build this beauty. Alright, enough of the small talk, let's take this `baby` for a spin.
 
