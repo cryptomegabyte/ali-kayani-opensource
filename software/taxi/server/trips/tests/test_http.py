@@ -12,7 +12,7 @@ class AuthenticationTest(APITestCase):
         Tests user account creation
         """
 
-        # get
+        # given
         response = self.client.post(
             reverse("sign_up"),
             data={
@@ -32,3 +32,28 @@ class AuthenticationTest(APITestCase):
         self.assertEqual(response.data["username"], user.username)
         self.assertEqual(response.data["first_name"], user.first_name)
         self.assertEqual(response.data["last_name"], user.last_name)
+
+    def test_when_passwords_do_not_match(self) -> None:
+        """
+        Tests user account creation when the passwords don't match.
+        Should raise an error
+        """
+
+        # given
+        response = self.client.post(
+            reverse("sign_up"),
+            data={
+                "username": "user@example.com",
+                "first_name": "Test",
+                "last_name": "User",
+                "password1": PASSWORD,
+                "password2": "another_password",
+            },
+        )
+
+        # when
+        error = response.data["non_field_errors"][0]
+
+        # then
+        self.assertEqual(status.HTTP_400_BAD_REQUEST, response.status_code)
+        assert error == "Passwords must match."
