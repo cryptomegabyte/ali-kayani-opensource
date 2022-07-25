@@ -1,3 +1,10 @@
+.PHONY: all
+
+export NODE_ENV := test
+
+something: 
+	./env.sh
+
 requirements:
 	python -m pip install -r requirements.txt
 
@@ -11,7 +18,7 @@ run_containers:
 	docker exec -it taxi-redis redis-cli ping
 
 set_exports:
-	export PGDATABASE=taxi PGUSER=taxi PGPASSWORD=taxi
+	./exports.sh
 
 mig:
 	python server/manage.py migrate
