@@ -33,3 +33,4 @@ clean_containers:
 
 tests:
 	python server/manage.py test -v 2 trips.tests
+	python -m pytest server/trips/tests/test_websocket.py -v -rP
