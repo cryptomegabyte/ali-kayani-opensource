@@ -45,3 +45,10 @@ class TestWebSocket:
         response = await communicator.receive_json_from()
         assert response == message
         await communicator.disconnect()
+
+    async def test_cannot_connect_to_socket(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        communicator = WebsocketCommunicator(application=application, path="/taxi/")
+        connected, _ = await communicator.connect()
+        assert connected is False
+        await communicator.disconnect()
