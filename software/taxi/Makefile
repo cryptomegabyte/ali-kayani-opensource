@@ -1,8 +1,5 @@
 .PHONY: all
 
-something: 
-	./env.sh
-
 requirements:
 	python -m pip install -r requirements.txt
 
