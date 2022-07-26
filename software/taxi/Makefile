@@ -1,7 +1,5 @@
 .PHONY: all
 
-export NODE_ENV := test
-
 something: 
 	./env.sh
 
