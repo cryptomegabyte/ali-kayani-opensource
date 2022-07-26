@@ -15,12 +15,12 @@ TEST_CHANNEL_LAYERS = {
 
 
 @database_sync_to_async
-def create_user(username, password, group="rider"):  # changed
+def create_user(username, password, group="rider"):
     # Create user.
     user = get_user_model().objects.create_user(username=username, password=password)
 
     # Create user group.
-    user_group, _ = Group.objects.get_or_create(name=group)  # new
+    user_group, _ = Group.objects.get_or_create(name=group)
     user.groups.add(user_group)
     user.save()
 
@@ -81,4 +81,31 @@ class TestWebSocket:
         await channel_layer.group_send("drivers", message=message)
         response = await communicator.receive_json_from()
         assert response == message
+        await communicator.disconnect()
+
+    async def test_request_trip(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        user, access = await create_user("test.user@example.com", "pAssw0rd", "rider")
+        communicator = WebsocketCommunicator(
+            application=application, path=f"/taxi/?token={access}"
+        )
+        await communicator.connect()
+        await communicator.send_json_to(
+            {
+                "type": "create.trip",
+                "data": {
+                    "pick_up_address": "123 Main Street",
+                    "drop_off_address": "456 Piney Road",
+                    "rider": user.id,
+                },
+            }
+        )
+        response = await communicator.receive_json_from()
+        response_data = response.get("data")
+        assert response_data["id"] is not None
+        assert response_data["pick_up_address"] == "123 Main Street"
+        assert response_data["drop_off_address"] == "456 Piney Road"
+        assert response_data["status"] == "REQUESTED"
+        assert response_data["rider"]["username"] == user.username
+        assert response_data["driver"] is None
         await communicator.disconnect()
