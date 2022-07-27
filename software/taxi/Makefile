@@ -6,11 +6,15 @@ requirements:
 precommit:
 	pre-commit run --all-files
 
-run_containers:
+install_containers:
 	docker run --name taxi-postgres -p 5432:5432 \
     -e POSTGRES_USER=taxi -e POSTGRES_DB=taxi -e POSTGRES_PASSWORD=taxi -d postgres
 	docker run --name taxi-redis -p 6379:6379 -d redis
 	docker exec -it taxi-redis redis-cli ping
+
+start_containers:
+	docker start taxi-postgres
+	docker start taxi-redis
 
 set_exports:
 	./exports.sh
