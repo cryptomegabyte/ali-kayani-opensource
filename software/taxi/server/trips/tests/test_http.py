@@ -1,8 +1,11 @@
 from base64 import b64decode
+from io import BytesIO
 from json import loads
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
+from django.core.files.uploadedfile import SimpleUploadedFile
+from PIL import Image
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
@@ -19,13 +22,16 @@ def create_user(username="user@example.com", password=PASSWORD, group_name="ride
     return user
 
 
-class AuthenticationTest(APITestCase):
-    def test_user_can_sign_up(self) -> None:
-        """
-        Tests user account creation
-        """
+def create_photo_file():
+    data = BytesIO()
+    Image.new("RGB", (100, 100)).save(data, "PNG")
+    data.seek(0)
+    return SimpleUploadedFile("photo.png", data.getvalue())
 
-        # given
+
+class AuthenticationTest(APITestCase):
+    def test_user_can_sign_up(self):
+        photo_file = create_photo_file()
         response = self.client.post(
             reverse("sign_up"),
             data={
@@ -35,18 +41,17 @@ class AuthenticationTest(APITestCase):
                 "password1": PASSWORD,
                 "password2": PASSWORD,
                 "group": "rider",
+                "photo": photo_file,
             },
         )
-        # when
         user = get_user_model().objects.last()
-
-        # then
         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
         self.assertEqual(response.data["id"], user.id)
         self.assertEqual(response.data["username"], user.username)
         self.assertEqual(response.data["first_name"], user.first_name)
         self.assertEqual(response.data["last_name"], user.last_name)
         self.assertEqual(response.data["group"], user.group)
+        self.assertIsNotNone(user.photo)
 
     def test_when_passwords_do_not_match(self) -> None:
         """
