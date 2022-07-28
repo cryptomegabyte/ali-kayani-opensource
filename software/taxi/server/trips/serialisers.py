@@ -33,6 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
             "password2",
             "first_name",
             "last_name",
+            "photo",
         )
         read_only_fields = ("id",)
 

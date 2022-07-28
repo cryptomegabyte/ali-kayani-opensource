@@ -1,13 +1,9 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenRefreshView
 from trips.views import LogInView, SignUpView
-
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/sign_up/", SignUpView.as_view(), name="sign_up"),
-]
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -20,5 +16,5 @@ urlpatterns = [
             "trips.urls",
             "trip",
         ),
-    ),  # new
-]
+    ),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
