@@ -11,7 +11,6 @@ beforeEach(() => {
   });
 
 it('should render the SignUp component', () => {
-    console.log(wrapper.debug())
     expect(wrapper).toBeTruthy();
   });
 
