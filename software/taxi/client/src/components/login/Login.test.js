@@ -26,5 +26,5 @@ it('should contain h1 tag', () => {
 
 it('should contain p tag', () => {
   expect(wrapper.find('p')).toHaveLength(1)
-  expect(wrapper.find('p').text()).toEqual('Already have an account? Log in!')
+  expect(wrapper.find('p').text()).toEqual('Don\'t have an account? Sign up!')
 });
