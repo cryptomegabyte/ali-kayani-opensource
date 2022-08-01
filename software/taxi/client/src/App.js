@@ -1,7 +1,14 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import './App.css';
 
-const App = () => <h1>Taxi</h1>
+function App () {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+}
 
 export default App;

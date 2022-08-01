@@ -11,10 +11,6 @@ beforeEach(() => {
 });
 
 it('should render the app', () => {
-  expect(wrapper).toBeTruthy();
-});
-
-it('should have h1 tag', () => {
-  expect(wrapper.find('h1')).toHaveLength(1);
-  expect(wrapper.find('h1').text()).toBe('Taxi')
+  console.log(wrapper.debug())
+  expect(wrapper.find('Outlet')).toBeTruthy();
 });
