@@ -12,13 +12,13 @@ function App () {
       <Navbar bg='light' expand='lg' variant='light'>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand className='landing-logo'>Taxi</Navbar.Brand>
+            <Navbar.Brand className='logo'>Taxi</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
           <Navbar.Collapse />
         </Container>
       </Navbar>
-      <Container className='pt-3'>
+      <Container>
         <Outlet />
       </Container>
     </>

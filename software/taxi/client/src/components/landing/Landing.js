@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import './landing.css';
 function Landing (props) {
   return (
     <div className='landing-container'>
