@@ -41,11 +41,16 @@ it('the Card component should have 2 children', () => {
 it('CardHeader should have text', () => {
   const card = wrapper.find('Card').children().at(0);
   const cardHeader = card.children().at(0).text();
-  expect(cardHeader == 'Sign up')
+  expect(cardHeader == 'Sign up');
 });
 
 it('CardText should have text', () => {
   const card = wrapper.find('Card').children().at(1);
   const cardText = card.find('CardText').text();
-  expect(cardText == 'Already have an account? Log in!')
+  expect(cardText == 'Already have an account? Log in!');
+});
+
+it('should contain a Formik form', () => {
+  console.log(wrapper.debug());
+  expect(wrapper.find('Formik')).toBeTruthy();
 });
