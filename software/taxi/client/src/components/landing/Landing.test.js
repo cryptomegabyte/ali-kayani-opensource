@@ -14,11 +14,23 @@ it('should render the Landing component', () => {
     expect(wrapper).toBeTruthy();
 });
 
-it('should contain Link components', () => {
-  expect(wrapper.find('Link')).toHaveLength(2)
-  expect(wrapper.find('Link').at(0).text()).toBe('Sign up')
-  expect(wrapper.find('Link').at(1).text()).toBe('Log in')
+it('should contain a Button Group', () => {
+  console.log(wrapper.debug())
+  expect(wrapper.find('ButtonGroup')).toHaveLength(1)
 });
+
+it('should contain Link components', () => {
+  console.log(wrapper.debug())
+  expect(wrapper.find('LinkContainer')).toHaveLength(2)
+});
+
+it('should contain Button components', () => {
+  console.log(wrapper.debug())
+  expect(wrapper.find('Button')).toHaveLength(2)
+  expect(wrapper.find('Button').at(0).text()).toBe('Sign up')
+  expect(wrapper.find('Button').at(1).text()).toBe('Log in')
+});
+
 
 it('should contain h1 tag', () => {
   expect(wrapper.find('h1')).toHaveLength(1)
