@@ -22,6 +22,14 @@ it('the Breadcrumb component should have 2 children', () => {
   expect(wrapper.find('Breadcrumb').children()).toHaveLength(2);
 });
 
+it('the children of the breadcrumb items should contain text', () => {
+  const breadcrumb = wrapper.find('BreadcrumbItem');
+  const firstBreadCrumbItem = breadcrumb.at(0).text();
+  const secondBreadCrumbItem = breadcrumb.at(1).text();
+  expect(firstBreadCrumbItem == 'Home');
+  expect(secondBreadCrumbItem == 'Sign up');
+});
+
 it('should render the Card component', () => {
   expect(wrapper.find('Card')).toBeTruthy();
 });
