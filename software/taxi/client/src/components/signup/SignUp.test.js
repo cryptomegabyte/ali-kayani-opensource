@@ -14,17 +14,30 @@ it('should render the SignUp component', () => {
     expect(wrapper).toBeTruthy();
   });
 
-it('should contain Link components', () => {
-  expect(wrapper.find('Link')).toHaveLength(2)
-  expect(wrapper.find('Link').first().text()).toBe('Home')
+it('should render the Breadcrumb component', () => {
+  expect(wrapper.find('Breadcrumb')).toBeTruthy();
 });
 
-it('should contain h1 tag', () => {
-  expect(wrapper.find('h1')).toHaveLength(1)
-  expect(wrapper.find('h1').text()).toBe('Sign up')
+it('the Breadcrumb component should have 2 children', () => {
+  expect(wrapper.find('Breadcrumb').children()).toHaveLength(2);
 });
 
-it('should contain p tag', () => {
-  expect(wrapper.find('p')).toHaveLength(1)
-  expect(wrapper.find('p').text()).toEqual('Already have an account? Log in!')
+it('should render the Card component', () => {
+  expect(wrapper.find('Card')).toBeTruthy();
+});
+
+it('the Card component should have 2 children', () => {
+  expect(wrapper.find('Card').children()).toHaveLength(2);
+});
+
+it('CardHeader should have text', () => {
+  const card = wrapper.find('Card').children().at(0);
+  const cardHeader = card.children().at(0).text();
+  expect(cardHeader == 'Sign up')
+});
+
+it('CardText should have text', () => {
+  const card = wrapper.find('Card').children().at(1);
+  const cardText = card.find('CardText').text();
+  expect(cardText == 'Already have an account? Log in!')
 });
