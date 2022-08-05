@@ -15,7 +15,6 @@ it('should render the Landing component', () => {
 });
 
 it('should contain Link components', () => {
-  console.log(wrapper)
   expect(wrapper.find('Link')).toHaveLength(2)
   expect(wrapper.find('Link').at(0).text()).toBe('Sign up')
   expect(wrapper.find('Link').at(1).text()).toBe('Log in')
