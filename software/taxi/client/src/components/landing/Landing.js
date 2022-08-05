@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import './landing.css';
-function Landing (props) {
+function Landing () {
   return (
     <div className='landing-container'>
       <h1 className='landing-header'>Taxi</h1>

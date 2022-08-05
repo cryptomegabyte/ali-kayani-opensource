@@ -3,7 +3,7 @@ import { Breadcrumb, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 // changed
-function LogIn (props) {
+function LogIn () {
   return (
     <>
       <Breadcrumb>
