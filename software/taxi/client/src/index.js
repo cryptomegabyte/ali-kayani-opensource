@@ -14,12 +14,11 @@ ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path='/' element={<App />} />
-        {/* new begin */}
-        <Route index element={<Landing />} />
-        <Route path='sign-up' element={<SignUp />} />
-        <Route path='log-in' element={<LogIn />} />
-        {/* new end */}
+        <Route path='/' element={<App />}>
+          <Route index element={<Landing />} />
+          <Route path='sign-up' element={<SignUp />} />
+          <Route path='log-in' element={<LogIn />} />
+        </Route>
       </Routes>
     </HashRouter>
   </React.StrictMode>,
