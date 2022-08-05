@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Button, ButtonGroup } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function Landing (props) {
   return (
-    <div>
-      <h1>Taxi</h1>
-      <Link to='/sign-up'>Sign up</Link>
-      <Link to='/log-in'>Log in</Link>
+    <div className='landing-container'>
+      <h1 className='landing-header'>Taxi</h1>
+      <ButtonGroup>
+        <LinkContainer to='/sign-up'><Button>Sign up</Button></LinkContainer>
+        <LinkContainer to='/log-in'><Button>Log in</Button></LinkContainer>
+      </ButtonGroup>
     </div>
   );
 }
 
-export default Landing
+export default Landing;
