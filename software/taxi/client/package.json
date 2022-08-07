@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "yarn eslint . --ext .js",
-    "integration_tests": "yarn run cypress open"
+    "integration_tests": "yarn cypress run"
   },
   "eslintConfig": {
     "extends": [
