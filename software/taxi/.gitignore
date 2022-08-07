@@ -4,3 +4,7 @@ env/
 
 # cache files
 __pycache__
+
+# cypress videos & screenshots
+client/cypress/videos/
+client/cypress/screenshots/
