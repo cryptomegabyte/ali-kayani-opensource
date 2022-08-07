@@ -51,6 +51,5 @@ it('CardText should have text', () => {
 });
 
 it('should contain a Formik form', () => {
-  console.log(wrapper.debug());
   expect(wrapper.find('Formik')).toBeTruthy();
 });
