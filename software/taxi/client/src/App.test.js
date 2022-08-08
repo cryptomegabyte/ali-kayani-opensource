@@ -11,7 +11,6 @@ beforeEach(() => {
 });
 
 it('should render the app', () => {
-  console.log(wrapper.debug());
   expect(wrapper).toBeTruthy();
 });
 
