@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import {
-  Breadcrumb, Button, Card, Form
+  Alert, Breadcrumb, Button, Card, Form
 } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 
@@ -9,15 +9,26 @@ import { Link, Navigate } from 'react-router-dom';
 function LogIn ({ logIn, isLoggedIn }) {
 
   const [isSubmitted, setSubmitted] = useState(false);
+
   const onSubmit = async ({username, password}, actions) => {
     try {
-      await logIn(username, password);
-      setSubmitted(true);
+      const { response, isError } = await logIn(
+        username,
+        password
+      );
+      if (isError) {
+        const data = response.response.data;
+        for (const value in data) {
+          actions.setFieldError(value, data[value].join(' '));
+        }
+      } else {
+        setSubmitted(true);
+      }
     }
     catch (error) {
       console.error(error);
     }
-  };
+  }
 
   if (isLoggedIn || isSubmitted) {
     return <Navigate to='/' />;
@@ -40,10 +51,20 @@ function LogIn ({ logIn, isLoggedIn }) {
           onSubmit={onSubmit}
         >
           {({
+            errors,
             handleChange,
             handleSubmit,
+            isSubmitting,
             values
           }) => (
+            <>
+            {
+              '__all__' in errors && (
+                <Alert variant='danger'>
+                  {errors.__all__}
+                </Alert>
+              )
+            }
             <Form noValidate onSubmit={handleSubmit}>
               <Form.Group className='mb-3' controlId='username'>
                 <Form.Label>Username:</Form.Label>
@@ -66,6 +87,7 @@ function LogIn ({ logIn, isLoggedIn }) {
                 <Button type='submit' variant='primary'>Log in</Button>
               </div>
             </Form>
+          </>
           )}
         </Formik>
           <Card.Text className='text-center'>
