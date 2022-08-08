@@ -7,7 +7,7 @@ Enzyme.configure({adapter: new Adapter()});
 let wrapper;
 
 beforeEach(() => {
-    wrapper = shallow(<Layout />);
+    wrapper = shallow(<Layout isLoggedIn={true}/>);
   });
 
 it('should render the SignUp component', () => {
@@ -46,3 +46,13 @@ it('should contain a Navbar component', () => {
     expect(wrapper.find('Outlet')).toBeTruthy();
   });
   
+  it('should render the form and button component', () => {
+    expect(wrapper.find('Form')).toBeTruthy();
+    expect(wrapper.find('Button')).toBeTruthy();
+  });
+
+  it('should not render the form and button component', () => {
+    const propsFalseWrapper = shallow(<Layout isLoggedIn={false} /> );
+    expect(propsFalseWrapper.find('Form')).toHaveLength(0);
+    expect(propsFalseWrapper.find('Button')).toHaveLength(0);
+  });
