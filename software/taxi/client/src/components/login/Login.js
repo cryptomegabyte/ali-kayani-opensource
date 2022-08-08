@@ -8,9 +8,11 @@ import { Link, Navigate } from 'react-router-dom';
 
 function LogIn (props) {
 
+  const { logIn } = props;
+
   const [isSubmitted, setSubmitted] = useState(false);
-  const onSubmit = (values, actions) => {
-    props.logIn(values.username, values.password);
+  const onSubmit = ({username, password}, actions) => {
+    logIn(username, password);
     setSubmitted(true);
   };
 
