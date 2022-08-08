@@ -1,4 +1,4 @@
-import Enzyme, { shallow } from 'enzyme';
+ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
 
@@ -11,37 +11,19 @@ beforeEach(() => {
 });
 
 it('should render the app', () => {
+  console.log(wrapper.debug());
   expect(wrapper).toBeTruthy();
 });
 
-it('should contain a Navbar component', () => {
-  expect(wrapper.find('Navbar')).toBeTruthy();
+it('should contain a Routes component', () => {
+  expect(wrapper.find('Routes')).toBeTruthy();
+  expect(wrapper.find('Routes')).toHaveLength(1);
 });
 
-it('that navbar component should have props', () => {
-  expect(wrapper.find('Navbar').props().bg).toBe('light');
-  expect(wrapper.find('Navbar').props().expand).toBe('lg');
-  expect(wrapper.find('Navbar').props().variant).toBe('light');
+it('should contain a Route component', () => {
+  expect(wrapper.find('Route')).toBeTruthy();
 });
 
-it('should contain two container component', () => {
-  expect(wrapper.find('Container')).toHaveLength(2);
-});
-
-it('should contain Link components', () => {
-  expect(wrapper.find('LinkContainer')).toHaveLength(1)
-});
-
-it('that navbar component should have props', () => {
-  expect(wrapper.find('Navbar').props().bg).toBe('light');
-});
-
-it('that navbar component should have props', () => {
-  expect(wrapper.find('Navbar').props().bg).toBe('light');
-  expect(wrapper.find('Navbar').props().expand).toBe('lg');
-  expect(wrapper.find('Navbar').props().variant).toBe('light');
-});
-
-it('should contain an outlet component', () => {
-  expect(wrapper.find('Outlet')).toBeTruthy();
+it('the Routes component should have three routes', () => {
+  expect(wrapper.find('Route').children()).toHaveLength(3);
 });

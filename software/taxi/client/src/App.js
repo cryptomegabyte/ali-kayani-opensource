@@ -1,27 +1,23 @@
 import React from 'react';
-import { Container, Navbar } from 'react-bootstrap'; // new
-import { LinkContainer } from 'react-router-bootstrap'; // new
-import { Outlet } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+// Components
+import Landing from './components/landing/Landing';
+import LogIn from './components/login/Login';
+import SignUp from './components/signup/SignUp';
+import Layout from './components/layout/Layout';
 
 import './App.css';
 
 // changed
 function App () {
   return (
-    <>
-      <Navbar bg='light' expand='lg' variant='light'>
-        <Container>
-          <LinkContainer to='/'>
-            <Navbar.Brand className='logo'>Taxi</Navbar.Brand>
-          </LinkContainer>
-          <Navbar.Toggle />
-          <Navbar.Collapse />
-        </Container>
-      </Navbar>
-      <Container>
-        <Outlet />
-      </Container>
-    </>
+    <Routes>
+    <Route path='/' element={<Layout />}>
+      <Route index element={<Landing />} />
+      <Route path='sign-up' element={<SignUp />} />
+      <Route path='log-in' element={<LogIn />} />
+    </Route>
+  </Routes>
   );
 }
 
