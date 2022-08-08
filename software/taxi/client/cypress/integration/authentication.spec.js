@@ -16,30 +16,41 @@ describe('Authentication', function () {
     cy.wait('@logIn');
   };
 
-  it('Can log in.', function () {
-    logIn();
-    cy.hash().should('eq', '#/');
-    cy.get('button').contains('Log out');
-  });
-
+  
   it('Can sign up.', function () {
+
+    cy.intercept('POST', 'sign_up', {
+      statusCode: 201,
+      body: {
+        id: 1,
+        username: 'gary.cole@example.com',
+        first_name: 'Gary',
+        last_name: 'Cole',
+        group: 'driver',
+        photo: '/media/images/photo.jpg'
+      }
+    }).as('signUp');
+    
     cy.visit('/#/sign-up');
-    cy.get('input#username').type('a.user@foo.bar.com');
-    cy.get('input#firstName').type('Foo');
-    cy.get('input#lastName').type('Bar');
+    cy.get('input#username').type('gary.cole@example.com');
+    cy.get('input#firstName').type('Gary');
+    cy.get('input#lastName').type('Cole');
     cy.get('input#password').type('pAssw0rd', { log: false });
     cy.get('select#group').select('driver');
+    
     cy.get('input#photo').attachFile('images/photo.jpg');
+    
     cy.get('button').contains('Sign up').click();
+    cy.wait('@signUp'); 
     cy.hash().should('eq', '#/log-in');
   });
-
+  
   it('Can log in.', function () {
     logIn();
     cy.hash().should('eq', '#/');
     cy.get('button').contains('Log out');
   });
-
+  
   it('Cannot visit the sign up page when logged in.', function () {
     logIn();
     cy.visit('/#/sign-up');
@@ -87,34 +98,5 @@ describe('Authentication', function () {
       expect(window.localStorage.getItem('taxi.auth')).to.be.null;
     });
     cy.get('button').contains('Log out').should('not.exist');
-  });
-
-  it('Can sign up.', function () {
-
-    cy.intercept('POST', 'sign_up', {
-      statusCode: 201,
-      body: {
-        id: 1,
-        username: 'gary.cole@example.com',
-        first_name: 'Gary',
-        last_name: 'Cole',
-        group: 'driver',
-        photo: '/media/images/photo.jpg'
-      }
-    }).as('signUp');
-  
-    cy.visit('/#/sign-up');
-    cy.get('input#username').type('gary.cole@example.com');
-    cy.get('input#firstName').type('Gary');
-    cy.get('input#lastName').type('Cole');
-    cy.get('input#password').type('pAssw0rd', { log: false });
-    cy.get('select#group').select('driver');
-  
-    cy.get('input#photo').attachFile('images/photo.jpg');
-  
-    cy.get('button').contains('Sign up').click();
-    cy.wait('@signUp');
-    cy.hash().should('eq', '#/log-in');
-  });
-  
+  });  
 });
