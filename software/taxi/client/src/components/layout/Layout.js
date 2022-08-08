@@ -3,7 +3,7 @@ import { Container, Navbar, Form, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Outlet } from 'react-router-dom';
 
-function Layout ({ isLoggedIn }) {
+function Layout ({ isLoggedIn, logOut }) {
   return (
     <>
       <Navbar bg='light' expand='lg' variant='light'>
@@ -16,7 +16,7 @@ function Layout ({ isLoggedIn }) {
             {
               isLoggedIn && (
                 <Form>
-                  <Button type='button'>Log out</Button>
+                  <Button type='button' onClick={() => logOut()}>Log out</Button>
                 </Form>
               )
             }

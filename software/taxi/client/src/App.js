@@ -31,12 +31,38 @@ const logIn = async (username, password) => {
   }
 };
 
-  return (
-    <Routes>
-    <Route path='/' element={<Layout isLoggedIn={isLoggedIn}/>}>
+const logOut = () => {
+  window.localStorage.removeItem('taxi.auth');
+  setLoggedIn(false);
+};
+
+return (
+  <Routes>
+    <Route
+      path='/'
+      element={
+        <Layout
+          isLoggedIn={isLoggedIn}
+          logOut={logOut}
+        />
+      }
+    >
       <Route index element={<Landing isLoggedIn={isLoggedIn} />} />
-      <Route path='sign-up' element={<SignUp isLoggedIn={isLoggedIn} />} />
-      <Route path='log-in' element={<LogIn logIn={logIn} isLoggedIn={isLoggedIn} />} />
+      <Route
+        path='sign-up'
+        element={
+          <SignUp isLoggedIn={isLoggedIn} />
+        }
+      />
+      <Route
+        path='log-in'
+        element={
+          <LogIn
+            isLoggedIn={isLoggedIn}
+            logIn={logIn}
+          />
+        }
+      />
     </Route>
   </Routes>
   );
