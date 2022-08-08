@@ -49,6 +49,7 @@ it('should contain a Navbar component', () => {
   it('should render the form and button component', () => {
     expect(wrapper.find('Form')).toBeTruthy();
     expect(wrapper.find('Button')).toBeTruthy();
+    expect(wrapper.find('Button').text()).toBe('Log out');
   });
 
   it('should not render the form and button component', () => {
