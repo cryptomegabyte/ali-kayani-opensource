@@ -4,12 +4,40 @@ import {
   Breadcrumb, Button, Card, Form
 } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUp ({ isLoggedIn }) {
   
   const [isSubmitted, setSubmitted] = useState(false);
-  const onSubmit = (values, actions) => setSubmitted(true);
 
+  const onSubmit = async ({
+      username,
+      firstName,
+      lastName,
+      password,
+      group,
+      photo
+  }, actions) => {
+    const url = '/api/sign_up/';
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('first_name', firstName);
+    formData.append('last_name', lastName);
+    formData.append('password1', password);
+    formData.append('password2', password);
+    formData.append('group', group);
+    formData.append('photo', photo);
+    try {
+      await axios.post(url, formData);
+      setSubmitted(true);
+    } catch (response) {
+      const data = response.response.data;
+      for (const value in data) {
+        actions.setFieldError(value, data[value].join(' '));
+      }
+    }
+  };
+  
   if (isSubmitted) {
     return <Navigate to='/log-in' />;
   }
