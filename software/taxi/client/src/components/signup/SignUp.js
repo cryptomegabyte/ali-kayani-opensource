@@ -5,13 +5,17 @@ import {
 } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 
-function SignUp (props) {
+function SignUp ({ isLoggedIn }) {
   
   const [isSubmitted, setSubmitted] = useState(false);
   const onSubmit = (values, actions) => setSubmitted(true);
 
   if (isSubmitted) {
     return <Navigate to='/log-in' />;
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to='/' />;
   }
   
   return (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 // Components
 import Landing from './components/landing/Landing';
 import LogIn from './components/login/Login';
@@ -8,18 +9,32 @@ import Layout from './components/layout/Layout';
 
 import './App.css';
 
-// changed
 function App () {
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const logIn = (username, password) => setLoggedIn(true);
+const [isLoggedIn, setLoggedIn] = useState(() => {
+  return window.localStorage.getItem('taxi.auth') !== null;
+});
+
+const logIn = async (username, password) => {
+  const url = '/api/log_in/';
+  try {
+    const response = await axios.post(url, { username, password });
+    window.localStorage.setItem(
+      'taxi.auth', JSON.stringify(response.data)
+    );
+    setLoggedIn(true);
+  }
+  catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <Routes>
     <Route path='/' element={<Layout isLoggedIn={isLoggedIn}/>}>
-      <Route index element={<Landing />} />
-      <Route path='sign-up' element={<SignUp />} />
-      <Route path='log-in' element={<LogIn logIn={logIn} />} />
+      <Route index element={<Landing isLoggedIn={isLoggedIn} />} />
+      <Route path='sign-up' element={<SignUp isLoggedIn={isLoggedIn} />} />
+      <Route path='log-in' element={<LogIn logIn={logIn} isLoggedIn={isLoggedIn} />} />
     </Route>
   </Routes>
   );

@@ -4,14 +4,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import './landing.css';
 
-function Landing () {
+function Landing ({ isLoggedIn }) {
   return (
     <div className='landing-container'>
       <h1 className='landing-header'>Taxi</h1>
-      <ButtonGroup>
-        <LinkContainer to='/sign-up'><Button>Sign up</Button></LinkContainer>
-        <LinkContainer to='/log-in'><Button>Log in</Button></LinkContainer>
-      </ButtonGroup>
+      {
+        isLoggedIn ? (
+          <></>
+        ) : (
+          <ButtonGroup>
+            <LinkContainer to='/sign-up'><Button>Sign up</Button></LinkContainer>
+            <LinkContainer to='/log-in'><Button>Log in</Button></LinkContainer>
+          </ButtonGroup>
+        )
+      }
     </div>
   );
 }

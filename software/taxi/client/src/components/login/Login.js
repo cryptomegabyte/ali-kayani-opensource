@@ -6,17 +6,20 @@ import {
 import { Link, Navigate } from 'react-router-dom';
 
 
-function LogIn (props) {
-
-  const { logIn } = props;
+function LogIn ({ logIn, isLoggedIn }) {
 
   const [isSubmitted, setSubmitted] = useState(false);
-  const onSubmit = ({username, password}, actions) => {
-    logIn(username, password);
-    setSubmitted(true);
+  const onSubmit = async ({username, password}, actions) => {
+    try {
+      await logIn(username, password);
+      setSubmitted(true);
+    }
+    catch (error) {
+      console.error(error);
+    }
   };
 
-  if (isSubmitted) {
+  if (isLoggedIn || isSubmitted) {
     return <Navigate to='/' />;
   }
   
