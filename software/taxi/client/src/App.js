@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // Components
 import Landing from './components/landing/Landing';
@@ -10,12 +10,16 @@ import './App.css';
 
 // changed
 function App () {
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const logIn = (username, password) => setLoggedIn(true);
+
   return (
     <Routes>
-    <Route path='/' element={<Layout />}>
+    <Route path='/' element={<Layout isLoggedIn={isLoggedIn}/>}>
       <Route index element={<Landing />} />
       <Route path='sign-up' element={<SignUp />} />
-      <Route path='log-in' element={<LogIn />} />
+      <Route path='log-in' element={<LogIn logIn={logIn} />} />
     </Route>
   </Routes>
   );
