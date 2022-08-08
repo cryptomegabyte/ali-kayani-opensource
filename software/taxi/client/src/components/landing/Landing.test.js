@@ -7,29 +7,27 @@ Enzyme.configure({adapter: new Adapter()});
 let wrapper;
 
 beforeEach(() => {
-    wrapper = shallow(<Landing />);
+    wrapper = shallow(<Landing isLoggedIn={false}/>);
 });
 
 it('should render the Landing component', () => {
     expect(wrapper).toBeTruthy();
 });
 
-it('should contain a Button Group', () => {
-  expect(wrapper.find('ButtonGroup')).toHaveLength(1)
+it('should contain a div', () => {
+  expect(wrapper.find('div')).toHaveLength(1);
 });
 
-it('should contain Link components', () => {
-  expect(wrapper.find('LinkContainer')).toHaveLength(2)
+it('should contain a h1 with text', () => {
+  expect(wrapper.find('h1')).toHaveLength(1);
+  expect(wrapper.find('h1').text()).toBe('Taxi');
 });
 
-it('should contain Button components', () => {
-  expect(wrapper.find('Button')).toHaveLength(2)
-  expect(wrapper.find('Button').at(0).text()).toBe('Sign up')
-  expect(wrapper.find('Button').at(1).text()).toBe('Log in')
-});
+const propsTrueWrapper = shallow(<Landing isLoggedIn={true}/>);
 
-
-it('should contain h1 tag', () => {
-  expect(wrapper.find('h1')).toHaveLength(1)
-  expect(wrapper.find('h1').text()).toBe('Taxi')
+it('should contain a button group', () => {
+  expect(wrapper.find('ButtonGroup')).toHaveLength(1);
+  expect(wrapper.find('LinkContainer')).toHaveLength(2);
+  expect(wrapper.find('Button').at(0).text()).toBe('Sign up');
+  expect(wrapper.find('Button').at(1).text()).toBe('Log in');
 });
