@@ -1,4 +1,4 @@
-# ali-kayani-opensource
+# ali-kayani-opensource-python
 
 Hi tech community, for a long time i have been wanting to create something like this where i can share my thoughts through knowledge articles, build actual software projects using TDD and to build devops projects.
 
