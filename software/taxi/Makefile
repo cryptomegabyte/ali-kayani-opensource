@@ -9,8 +9,12 @@ mig:
 create_superuser:
 	docker-compose exec taxi-server python manage.py createsuperuser
 
-tests:
+unit_tests:
 	docker-compose exec taxi-server python -m pytest
+	cd client && yarn test
+
+integration_tests:
+	cd client && yarn integration_tests
 	
 down_local:  docker-compose.yml
 	docker-compose down -v
