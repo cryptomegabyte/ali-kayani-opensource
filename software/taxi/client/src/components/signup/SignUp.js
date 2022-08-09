@@ -11,7 +11,7 @@ function SignUp({ isLoggedIn }) {
     { username, firstName, lastName, password, group, photo },
     actions
   ) => {
-    const url = "/api/sign_up/";
+    const url = `${process.env.REACT_APP_BASE_URL}/api/sign_up/`;
     const formData = new FormData();
     formData.append("username", username);
     formData.append("first_name", firstName);

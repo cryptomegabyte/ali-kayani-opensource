@@ -1,7 +1,8 @@
 .PHONY: all
 
-up_local:
+up:
 	docker-compose up -d --build
+	make mig
 
 mig:
 	docker-compose exec taxi-server python manage.py migrate
@@ -16,7 +17,7 @@ unit_tests:
 integration_tests:
 	cd client && yarn integration_tests
 	
-down_local:  docker-compose.yml
+down:  docker-compose.yml
 	docker-compose down -v
 
 clean:
