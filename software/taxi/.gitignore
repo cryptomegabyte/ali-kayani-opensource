@@ -8,3 +8,6 @@ __pycache__
 # cypress videos & screenshots
 client/cypress/videos/
 client/cypress/screenshots/
+
+# react app build folder
+client/build/

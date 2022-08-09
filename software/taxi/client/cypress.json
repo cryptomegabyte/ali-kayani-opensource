@@ -1,9 +1,9 @@
 {
-    "baseUrl": "http://localhost:3000",
-    "env": {
-      "credentials": {
-        "username": "a.user@foo.bar.com",
-        "password": "pAssw0rd"
-      }
+  "baseUrl": "http://localhost:3000",
+  "env": {
+    "credentials": {
+      "username": "a.user@foo.bar.com",
+      "password": "pAssw0rd"
     }
   }
+}

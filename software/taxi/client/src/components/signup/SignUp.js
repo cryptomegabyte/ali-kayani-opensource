@@ -1,68 +1,61 @@
-import React, { useState } from 'react';
-import { Formik } from 'formik';
-import {
-  Breadcrumb, Button, Card, Form
-} from 'react-bootstrap';
-import { Link, Navigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Formik } from "formik";
+import { Breadcrumb, Button, Card, Form } from "react-bootstrap";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 
-function SignUp ({ isLoggedIn }) {
-  
+function SignUp({ isLoggedIn }) {
   const [isSubmitted, setSubmitted] = useState(false);
 
-  const onSubmit = async ({
-      username,
-      firstName,
-      lastName,
-      password,
-      group,
-      photo
-  }, actions) => {
-    const url = '/api/sign_up/';
+  const onSubmit = async (
+    { username, firstName, lastName, password, group, photo },
+    actions
+  ) => {
+    const url = "/api/sign_up/";
     const formData = new FormData();
-    formData.append('username', username);
-    formData.append('first_name', firstName);
-    formData.append('last_name', lastName);
-    formData.append('password1', password);
-    formData.append('password2', password);
-    formData.append('group', group);
-    formData.append('photo', photo);
+    formData.append("username", username);
+    formData.append("first_name", firstName);
+    formData.append("last_name", lastName);
+    formData.append("password1", password);
+    formData.append("password2", password);
+    formData.append("group", group);
+    formData.append("photo", photo);
     try {
       await axios.post(url, formData);
       setSubmitted(true);
     } catch (response) {
       const data = response.response.data;
       for (const value in data) {
-        actions.setFieldError(value, data[value].join(' '));
+        actions.setFieldError(value, data[value].join(" "));
       }
     }
   };
-  
+
   if (isSubmitted) {
-    return <Navigate to='/log-in' />;
+    return <Navigate to="/log-in" />;
   }
 
   if (isLoggedIn) {
-    return <Navigate to='/' />;
+    return <Navigate to="/" />;
   }
-  
+
   return (
     <>
       <Breadcrumb>
-        <Breadcrumb.Item href='/#/'>Home</Breadcrumb.Item>
+        <Breadcrumb.Item href="/#/">Home</Breadcrumb.Item>
         <Breadcrumb.Item active>Sign up</Breadcrumb.Item>
       </Breadcrumb>
-      <Card className='mb-3'>
+      <Card className="mb-3">
         <Card.Header>Sign up</Card.Header>
         <Card.Body>
           <Formik
             initialValues={{
-              username: '',
-              firstName: '',
-              lastName: '',
-              password: '',
-              group: 'rider',
-              photo: []
+              username: "",
+              firstName: "",
+              lastName: "",
+              password: "",
+              group: "rider",
+              photo: [],
             }}
             onSubmit={onSubmit}
           >
@@ -72,113 +65,119 @@ function SignUp ({ isLoggedIn }) {
               handleSubmit,
               isSubmitting,
               setFieldValue,
-              values
+              values,
             }) => (
               <Form noValidate onSubmit={handleSubmit}>
-                <Form.Group className='mb-3' controlId='username'>
+                <Form.Group className="mb-3" controlId="username">
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
-                    className={'username' in errors ? 'is-invalid' : ''}
-                    name='username'
+                    className={"username" in errors ? "is-invalid" : ""}
+                    name="username"
                     onChange={handleChange}
                     required
                     values={values.username}
                   />
-                    {
-                      'username' in errors && (
-                        <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
-                      )
-                    }
+                  {"username" in errors && (
+                    <Form.Control.Feedback type="invalid">
+                      {errors.username}
+                    </Form.Control.Feedback>
+                  )}
                 </Form.Group>
-                <Form.Group className='mb-3' controlId='firstName'>
+                <Form.Group className="mb-3" controlId="firstName">
                   <Form.Label>First name:</Form.Label>
                   <Form.Control
-                    className={'firstName' in errors ? 'is-invalid' : ''}
-                    name='firstName'
+                    className={"firstName" in errors ? "is-invalid" : ""}
+                    name="firstName"
                     onChange={handleChange}
                     required
                     values={values.firstName}
                   />
-                    {
-                      'firstName' in errors && (
-                        <Form.Control.Feedback type='invalid'>{errors.firstName}</Form.Control.Feedback>
-                      )
-                    }
+                  {"firstName" in errors && (
+                    <Form.Control.Feedback type="invalid">
+                      {errors.firstName}
+                    </Form.Control.Feedback>
+                  )}
                 </Form.Group>
-                <Form.Group className='mb-3' controlId='lastName'>
+                <Form.Group className="mb-3" controlId="lastName">
                   <Form.Label>Last name:</Form.Label>
                   <Form.Control
-                    className={'lastName' in errors ? 'is-invalid' : ''}
-                    name='lastName'
+                    className={"lastName" in errors ? "is-invalid" : ""}
+                    name="lastName"
                     onChange={handleChange}
                     required
                     values={values.lastName}
                   />
-                    {
-                      'lastName' in errors && (
-                        <Form.Control.Feedback type='invalid'>{errors.lastName}</Form.Control.Feedback>
-                      )
-                    }
+                  {"lastName" in errors && (
+                    <Form.Control.Feedback type="invalid">
+                      {errors.lastName}
+                    </Form.Control.Feedback>
+                  )}
                 </Form.Group>
-                <Form.Group className='mb-3' controlId='password'>
+                <Form.Group className="mb-3" controlId="password">
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
-                    className={'password1' in errors ? 'is-invalid' : ''}
-                    name='password'
+                    className={"password1" in errors ? "is-invalid" : ""}
+                    name="password"
                     onChange={handleChange}
                     required
-                    type='password'
+                    type="password"
                     value={values.password}
                   />
-                    {
-                      'password1' in errors && (
-                        <Form.Control.Feedback type='invalid'>{errors.password1}</Form.Control.Feedback>
-                      )
-                    }
+                  {"password1" in errors && (
+                    <Form.Control.Feedback type="invalid">
+                      {errors.password1}
+                    </Form.Control.Feedback>
+                  )}
                 </Form.Group>
-                <Form.Group className='mb-3' controlId='group'>
+                <Form.Group className="mb-3" controlId="group">
                   <Form.Label>Group:</Form.Label>
                   <Form.Select
-                    className={'group' in errors ? 'is-invalid' : ''}
-                    name='group'
+                    className={"group" in errors ? "is-invalid" : ""}
+                    name="group"
                     onChange={handleChange}
                     required
                     value={values.group}
                   >
-                    <option value='rider'>Rider</option>
-                    <option value='driver'>Driver</option>
+                    <option value="rider">Rider</option>
+                    <option value="driver">Driver</option>
                   </Form.Select>
-                  {
-                    'group' in errors && (
-                      <Form.Control.Feedback type='invalid'>{errors.group}</Form.Control.Feedback>
-                    )
-                  }
+                  {"group" in errors && (
+                    <Form.Control.Feedback type="invalid">
+                      {errors.group}
+                    </Form.Control.Feedback>
+                  )}
                 </Form.Group>
-                <Form.Group className='mb-3' controlId='photo'>
+                <Form.Group className="mb-3" controlId="photo">
                   <Form.Label>Photo:</Form.Label>
                   <Form.Control
-                    className={'photo' in errors ? 'is-invalid' : ''}
-                    name='photo'
-                    onChange={event => {
-                      setFieldValue('photo', event.currentTarget.files[0]);
+                    className={"photo" in errors ? "is-invalid" : ""}
+                    name="photo"
+                    onChange={(event) => {
+                      setFieldValue("photo", event.currentTarget.files[0]);
                     }}
                     required
-                    type='file'
+                    type="file"
                   />
-                    {
-                      'photo' in errors && (
-                        <Form.Control.Feedback type='invalid'>{errors.photo}</Form.Control.Feedback>
-                      )
-                    }
+                  {"photo" in errors && (
+                    <Form.Control.Feedback type="invalid">
+                      {errors.photo}
+                    </Form.Control.Feedback>
+                  )}
                 </Form.Group>
-                <div className='d-grid mb-3'>
-                  <Button type='submit' variant='primary' disabled={isSubmitting}>Sign up</Button>
+                <div className="d-grid mb-3">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={isSubmitting}
+                  >
+                    Sign up
+                  </Button>
                 </div>
               </Form>
             )}
           </Formik>
-          <Card.Text className='text-center'>
-            Already have an account? <Link to='/log-in'>Log in!</Link>
+          <Card.Text className="text-center">
+            Already have an account? <Link to="/log-in">Log in!</Link>
           </Card.Text>
         </Card.Body>
       </Card>

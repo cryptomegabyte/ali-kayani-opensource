@@ -1,23 +1,25 @@
-import React from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import React from "react";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
-import './landing.css';
+import "./landing.css";
 
-function Landing ({ isLoggedIn }) {
+function Landing({ isLoggedIn }) {
   return (
-    <div className='landing-container'>
-      <h1 className='landing-header'>Taxi</h1>
-      {
-        isLoggedIn ? (
-          <></>
-        ) : (
-          <ButtonGroup>
-            <LinkContainer to='/sign-up'><Button>Sign up</Button></LinkContainer>
-            <LinkContainer to='/log-in'><Button>Log in</Button></LinkContainer>
-          </ButtonGroup>
-        )
-      }
+    <div className="landing-container">
+      <h1 className="landing-header">Taxi</h1>
+      {isLoggedIn ? (
+        <></>
+      ) : (
+        <ButtonGroup>
+          <LinkContainer to="/sign-up">
+            <Button>Sign up</Button>
+          </LinkContainer>
+          <LinkContainer to="/log-in">
+            <Button>Log in</Button>
+          </LinkContainer>
+        </ButtonGroup>
+      )}
     </div>
   );
 }
