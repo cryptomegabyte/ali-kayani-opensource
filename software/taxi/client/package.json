@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "lint": "yarn eslint . --ext .js",
     "integration_tests": "yarn cypress run",
-    "clean": "rm -rf build/"
+    "clean": "rm -rf build/",
+    "pretty": " yarn prettier --write ."
   },
   "eslintConfig": {
     "extends": [
