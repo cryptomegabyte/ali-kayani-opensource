@@ -11,9 +11,7 @@ create_superuser:
 
 tests:
 	docker-compose exec taxi-server python -m pytest
-	docker-compose exec taxi-server python -m test -v 2 trips.tests
 	
-
 down_local:  docker-compose.yml
 	docker-compose down -v
 
@@ -22,4 +20,3 @@ clean:
 
 precommit:
 	pre-commit run --all-files
-
