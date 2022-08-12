@@ -26,8 +26,8 @@ it("the children of the breadcrumb items should contain text", () => {
   const breadcrumb = wrapper.find("BreadcrumbItem");
   const firstBreadCrumbItem = breadcrumb.at(0).text();
   const secondBreadCrumbItem = breadcrumb.at(1).text();
-  expect(firstBreadCrumbItem === "Home");
-  expect(secondBreadCrumbItem === "Log in");
+  expect(firstBreadCrumbItem).toBe("Home");
+  expect(secondBreadCrumbItem).toBe("Log in");
 });
 
 it("should render the Card component", () => {
@@ -41,13 +41,13 @@ it("the Card component should have 2 children", () => {
 it("CardHeader should have text", () => {
   const card = wrapper.find("Card").children().at(0);
   const cardHeader = card.children().at(0).text();
-  expect(cardHeader === "Sign up");
+  expect(cardHeader).toBe("Log in");
 });
 
 it("CardText should have text", () => {
   const card = wrapper.find("Card").children().at(1);
   const cardText = card.find("CardText").text();
-  expect(cardText === "Already have an account? Log in!");
+  expect(cardText).toBe("Don't have an account? Sign up!");
 });
 
 it("should contain a Formik form", () => {
