@@ -6,6 +6,8 @@ import Landing from "./components/landing/Landing";
 import LogIn from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import Layout from "./components/layout/Layout";
+import Driver from "./components/driver/Driver";
+import Rider from "./components/rider/Rider";
 
 import "./App.css";
 
@@ -45,6 +47,8 @@ function App() {
           element={<LogIn isLoggedIn={isLoggedIn} logIn={logIn} />}
         />
       </Route>
+      <Route path="rider" element={<Rider />} />
+      <Route path="driver" element={<Driver />} />
     </Routes>
   );
 }
