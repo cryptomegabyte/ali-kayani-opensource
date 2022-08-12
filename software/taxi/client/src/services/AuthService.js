@@ -8,12 +8,12 @@ export const getUser = () => {
   return undefined;
 };
 
-export const isDriver = (getUser) => {
+export const isDriver = () => {
   const user = getUser();
   return user && user.group === "driver";
 };
 
-export const isRider = (getUser) => {
+export const isRider = () => {
   const user = getUser();
   return user && user.group === "rider";
 };
