@@ -1,7 +1,12 @@
 import React from "react";
 import { Breadcrumb, Card } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
+import { isRider } from "../services/AuthService";
 
 function Rider() {
+  if (!isRider()) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       <Breadcrumb>
