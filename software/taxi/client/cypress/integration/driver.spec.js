@@ -10,8 +10,8 @@ describe("The driver dashboard", function () {
 
     cy.visit("/#/sign-up");
     cy.get("input#username").type(randomEmailRider);
-    cy.get("input#firstName").type("Gary");
-    cy.get("input#lastName").type("Cole");
+    cy.get("input#firstName").type("a");
+    cy.get("input#lastName").type("user");
     cy.get("input#password").type("pAssw0rd", { log: false });
     cy.get("select#group").select("rider");
 
@@ -42,8 +42,8 @@ describe("The driver dashboard", function () {
 
     cy.visit("/#/sign-up");
     cy.get("input#username").type(randomEmailDriver);
-    cy.get("input#firstName").type("Gary");
-    cy.get("input#lastName").type("Cole");
+    cy.get("input#firstName").type("a");
+    cy.get("input#lastName").type("user");
     cy.get("input#password").type("pAssw0rd", { log: false });
     cy.get("select#group").select("driver");
 
