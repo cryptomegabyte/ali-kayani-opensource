@@ -10,6 +10,9 @@ mig:
 create_superuser:
 	docker-compose exec taxi-server python manage.py createsuperuser
 
+pretty:
+	cd client && yarn pretty
+
 unit_tests:
 	docker-compose exec taxi-server python -m pytest
 	cd client && yarn test
