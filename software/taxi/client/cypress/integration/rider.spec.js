@@ -1,3 +1,4 @@
+import { tripResponse } from "../support/rider_test_data";
 const faker = require("faker");
 
 const driverEmail = faker.internet.email();
@@ -11,6 +12,24 @@ describe("The rider dashboard", function () {
   before(function () {
     cy.addUser(riderEmail, riderFirstName, riderLastName, "rider");
     cy.addUser(driverEmail, driverFirstName, driverLastName, "driver");
+  });
+
+  it("Displays current and completed trips", function () {
+    cy.intercept("trip", {
+      statusCode: 200,
+      body: tripResponse,
+    }).as("getTrips");
+
+    cy.logIn(riderEmail);
+
+    cy.visit("/#/rider");
+    cy.wait("@getTrips");
+
+    // Current trips.
+    cy.get("[data-cy=trip-card]").eq(0).contains("STARTED");
+
+    // Completed trips.
+    cy.get("[data-cy=trip-card]").eq(1).contains("COMPLETED");
   });
 
   it("Cannot be visited if the user is not a rider", function () {
