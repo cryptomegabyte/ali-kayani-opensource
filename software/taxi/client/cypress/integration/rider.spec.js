@@ -1,3 +1,4 @@
+import { tripResponse } from "../support/rider.test.data";
 const faker = require("faker");
 
 const driverEmail = faker.internet.email();
@@ -11,6 +12,24 @@ describe("The rider dashboard", function () {
   before(function () {
     cy.addUser(riderEmail, riderFirstName, riderLastName, "rider");
     cy.addUser(driverEmail, driverFirstName, driverLastName, "driver");
+  });
+
+  it("Displays current and completed trips", function () {
+    cy.intercept("trip", {
+      statusCode: 200,
+      body: tripResponse,
+    }).as("getTrips");
+
+    cy.logIn(riderEmail);
+
+    cy.visit("/#/rider");
+    cy.wait("@getTrips");
+
+    // Current trips.
+    cy.get("[data-cy=trip-card]").eq(0).contains("STARTED");
+
+    // Completed trips.
+    cy.get("[data-cy=trip-card]").eq(1).contains("COMPLETED");
   });
 
   it("Cannot be visited if the user is not a rider", function () {
@@ -29,5 +48,22 @@ describe("The rider dashboard", function () {
 
     cy.visit("/#/rider");
     cy.hash().should("eq", "#/rider");
+  });
+  it("Displays messages for no trips", function () {
+    cy.intercept("trip", {
+      statusCode: 200,
+      body: [],
+    }).as("getTrips");
+
+    cy.logIn(riderEmail);
+
+    cy.visit("/#/rider");
+    cy.wait("@getTrips");
+
+    // Current trips.
+    cy.get("[data-cy=trip-card]").eq(0).contains("No trips.");
+
+    // Completed trips.
+    cy.get("[data-cy=trip-card]").eq(1).contains("No trips.");
   });
 });
