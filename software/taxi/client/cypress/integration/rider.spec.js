@@ -30,4 +30,25 @@ describe("The rider dashboard", function () {
     cy.visit("/#/rider");
     cy.hash().should("eq", "#/rider");
   });
+  it('Displays messages for no trips', function () {
+    cy.intercept('trip', {
+      statusCode: 200,
+      body: []
+    }).as('getTrips');
+  
+    cy.logIn(riderEmail);
+  
+    cy.visit('/#/rider');
+    cy.wait('@getTrips');
+  
+    // Current trips.
+    cy.get('[data-cy=trip-card]')
+      .eq(0)
+      .contains('No trips.');
+  
+    // Completed trips.
+    cy.get('[data-cy=trip-card]')
+      .eq(1)
+      .contains('No trips.');
+  });
 });
