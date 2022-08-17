@@ -1,4 +1,4 @@
-import { tripResponse } from "../support/driver_test_data";
+import { tripResponse } from "../support/driver.test.data";
 
 const faker = require("faker");
 

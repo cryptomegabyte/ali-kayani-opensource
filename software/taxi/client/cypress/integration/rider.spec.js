@@ -1,4 +1,4 @@
-import { tripResponse } from "../support/rider_test_data";
+import { tripResponse } from "../support/rider.test.data";
 const faker = require("faker");
 
 const driverEmail = faker.internet.email();
