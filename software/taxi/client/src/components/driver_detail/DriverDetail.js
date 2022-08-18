@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useParams } from "react-router-dom";
 
 import TripMedia from "../trip_media/TripMedia";
-import { getTrip } from "../../services/TipService";
+import { getTrip } from "../../services/TripService";
 
 function DriverDetail() {
   const [trip, setTrip] = useState(null);

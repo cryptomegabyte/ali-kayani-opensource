@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Breadcrumb } from "react-bootstrap";
 
 import TripCard from "../trip_card/TripCard";
-import { getTrips } from "../../services/TipService";
+import { getTrips } from "../../services/TripService";
 
 function DriverDashboard(props) {
   const [trips, setTrips] = useState([]);
