@@ -8,7 +8,7 @@ import SignUp from "./components/signup/SignUp";
 import Layout from "./components/layout/Layout";
 import Driver from "./components/driver/Driver";
 import Rider from "./components/rider/Rider";
-import DriverDashboard from "./components/DriverDashboard/DriverDashboard";
+import DriverDashboard from "./components/driver_dashboard/DriverDashboard";
 import DriverDetail from "./components/driver_detail/DriverDetail";
 import RiderDashboard from "./components/rider_dashboard/RiderDashbaord";
 import RiderDetail from "./components/rider_detail/RiderDetail";
