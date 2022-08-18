@@ -23,6 +23,6 @@ it("should contain a Route component", () => {
   expect(wrapper.find("Route")).toBeTruthy();
 });
 
-it("the Routes component should have three routes", () => {
-  expect(wrapper.find("Route").children()).toHaveLength(3);
+it("the Routes component should have eight routes", () => {
+  expect(wrapper.find("Route").children()).toHaveLength(8);
 });

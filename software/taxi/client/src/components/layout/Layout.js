@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Navbar, Form, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Outlet } from "react-router-dom";
+import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { isRider } from "../../services/AuthService";
 
 function Layout({ isLoggedIn, logOut }) {
   return (
@@ -12,9 +13,16 @@ function Layout({ isLoggedIn, logOut }) {
             <Navbar.Brand className="logo">Taxi</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
+          <Navbar.Collapse>
+            {isRider() && (
+              <Nav className="me-auto">
+                <LinkContainer to="/rider/request">
+                  <Nav.Link data-cy="request-trip">Request a trip</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            )}
             {isLoggedIn && (
-              <Form>
+              <Form className="ms-auto">
                 <Button type="button" onClick={() => logOut()}>
                   Log out
                 </Button>
