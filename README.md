@@ -14,7 +14,8 @@ Feel free to use anything you see here in your own projects.
 # Repo structure
 
 ```
-articles/ [TODO]
+python/
+    kb/
 software/
     taxi/
     tsm/
@@ -24,6 +25,6 @@ software/
 
 The text summarisation microservice (tsm for short) is a production ready python project which uses fastapi and postgres to consume a news end point. Head over to the the `tsm/` folder to learn more.
 
-## Taxi
+## [Taxi](software/taxi/)
 
-In progress...
+The taxi app was my attempt to understand how a ride sharing app might work. Head over to the `taxi/` folder to learn more.
