@@ -18,7 +18,7 @@ software/
 
 ## [challenges](python/challenges/)/
 
-This is a place where I solve different python coding challenges. It's a place I can solidify my knowledge of python while solving interesting problems
+This is a place where I solve different python coding challenges. It's a place I can solidify my knowledge of python while solving interesting problems.
 # Software/
 ## [tsm](software/tsm/)/
 
