@@ -29,7 +29,7 @@ def test_if_else(input,output) -> None:
 
 
 @pytest.mark.parametrize("input,output", [(0,"out of bounds"),(202,"out of bounds")])
-def test_recursion_depth(input,output):
+def test_if_else_raises_error(input,output):
     with pytest.raises(ValueError) as excinfo:
         IfElse(input)
     assert output == str(excinfo.value)
