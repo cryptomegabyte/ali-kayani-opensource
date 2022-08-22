@@ -4,6 +4,8 @@ import { Breadcrumb } from "react-bootstrap";
 import TripCard from "../trip_card/TripCard";
 import { connect, getTrips, messages } from "../../services/TripService";
 
+import { toast } from "react-toastify";
+
 function RiderDashboard(props) {
   const [trips, setTrips] = useState([]);
 
@@ -36,6 +38,7 @@ function RiderDashboard(props) {
         ...prevTrips.filter((trip) => trip.id !== message.data.id),
         message.data,
       ]);
+      updateToast(message.data);
     });
     return () => {
       if (subscription) {
@@ -48,6 +51,17 @@ function RiderDashboard(props) {
     return trips.filter((trip) => {
       return trip.status === "COMPLETED";
     });
+  };
+
+  const updateToast = (trip) => {
+    const driverName = `${trip.driver.first_name} ${trip.driver.last_name}`;
+    if (trip.status === "STARTED") {
+      toast.info(`${driverName} is coming to pick you up.`);
+    } else if (trip.status === "IN_PROGRESS") {
+      toast.info(`${driverName} is headed to your destination.`);
+    } else if (trip.status === "COMPLETED") {
+      toast.info(`${driverName} has dropped you off.`);
+    }
   };
 
   return (

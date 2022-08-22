@@ -2,7 +2,9 @@ import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Outlet } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 import { isRider } from "../../services/AuthService";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout({ isLoggedIn, logOut }) {
   return (
@@ -34,6 +36,7 @@ function Layout({ isLoggedIn, logOut }) {
       <Container className="pt-3">
         <Outlet />
       </Container>
+      <ToastContainer />
     </>
   );
 }
