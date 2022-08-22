@@ -1,4 +1,3 @@
-from xml.dom import ValidationErr
 import pytest 
 
 from src.if_else import IfElse
