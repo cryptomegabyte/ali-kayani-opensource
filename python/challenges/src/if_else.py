@@ -1,7 +1,4 @@
-from tokenize import String
-
-
-def IfElse(n: int) -> String:
+def IfElse(n: int) -> str:
 
     if ( n < 1 or n > 100 ):
         raise ValueError("out of bounds")
