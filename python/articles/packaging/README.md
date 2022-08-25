@@ -33,7 +33,7 @@ packaging/
 Add the code below to the files shown.
 ## test_add.py
 
-```
+```python
 import pytest
 from src.add import add
 
@@ -50,14 +50,14 @@ def test_add(x:int, y:int, result:int) -> None:
 
 ## add.py
 
-```
+```python
 def add(x:int, y:int) -> int:
     return x + y
 ```
 
 ## add_app/__init__.py
 
-```
+```python
 from .src.add import add
 ```
 
@@ -83,7 +83,7 @@ Let's get started packaging our app. We're going to create a setup.py within the
 1. `touch setup.py`
 2. Add the following data.
 
-```
+```python
 from setuptools import setup
 
 setup(
@@ -101,7 +101,22 @@ setup(
 
 This is metadata which encapsulates the package you are creating.  Go to [setuptools](https://github.com/pypa/setuptools) to learn more about the different meta data items you can potentially add.
 
-At this point 
-
 ## Installing locally
+
+Ensure you are within the `packaging/apps` folder. `pip install .` will install the package locally. If you want to make the package available to other users of the system then `pip install -e .` will make that happen.
+
+## Using the package
+
+Open your pthon repl by typing `python` at the command prompt, import the app then call the add function.
+
+```python
+Python 3.10.5 (main, Aug  2 2022, 15:16:15) [GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import add_app
+>>> print(add_app.add(5,3))
+8
+>>> 
+```
+
+Success! the app has been imported and used successfully.
 
