@@ -120,3 +120,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Success! the app has been imported and used successfully.
 
+# Publishing
+
+We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
+
+In my professional experience, I usually will use a CI/CD tool such as github actions to build and deploy my package to a specific location.
+
+`python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
