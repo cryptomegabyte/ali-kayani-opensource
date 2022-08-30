@@ -177,3 +177,71 @@ In my professional experience, I usually will use a CI/CD tool such as github ac
 
 `python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
 
+### [*.egg-info](https://svn.python.org/projects/sandbox/trunk/setuptools/doc/formats.txt`)
+
+When issuing the `python setup.py sdist` or `python setup.py develop` or `pip install .` or `pip install -e .`commands you may have noticed `add_app.egg-info` folder being created.  
+
+```
+A "Python egg" is a logical structure embodying the release of a specific version of a Python project, comprising its code, resources, and metadata. There are multiple formats that can be used to physically encode a Python egg, and others can be developed. However, a key principle of Python eggs is that they should be discoverable and importable. That is, it should be possible for a Python application to easily and efficiently find out what eggs are present on a system, and to ensure that the desired eggs' contents are importable.
+
+The .egg format is well-suited to distribution and the easy uninstallation or upgrades of code, since the project is essentially self-contained within a single directory or file, unmingled with any other projects' code or resources. It also makes it possible to have multiple versions of a project simultaneously installed, such that individual programs can select the versions they wish to use.
+
+```
+## Entry Point
+
+In other langauages you normally have a `main` entry point, perhaps to parse command line args, perhaps to setup the program, whatever the reason you can add a main entry point into the program and call it.
+
+```
+packaging/
+|--apps/
+|----add_app/
+|--------src/
+|----------__init__.py
+|----------add.py
+|--------tests/
+|----------test_add.py
+|--------__init__.py 
+|--------cli.py <<< new >>>
+|----setup.py <<< modified >>>
+|--.gitignore
+|--README.md
+|--requirements.txt
+```
+
+Create a cli.py and add the following code:
+
+```python
+from add_app import add
+
+def main() -> None:
+    print(add(100,50))
+```
+
+Here, I import the add function, I create a function called main where i call it.
+
+Modify the setup.py to include the following
+
+```python
+from setuptools import setup
+
+setup(
+      ...
+      entry_points = {
+            'console_scripts': [
+                  'add = add_app.cli:main'
+            ],
+      },
+     ...
+)
+
+```
+
+Install the add_app project `pip install -e .`
+
+From the command prompt you simply should be abale to call `add` and the program should execute.
+
+```bash
+$ add
+150
+```
+

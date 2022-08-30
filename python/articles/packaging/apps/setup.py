@@ -9,5 +9,10 @@ setup(
       author_email='foo.bar@foo.com',
       license='MIT',
       packages=['add_app'],
+      entry_points = {
+            'console_scripts': [
+                  'add = add_app.cli:main'
+            ],
+      },
       zip_safe=False
 )
