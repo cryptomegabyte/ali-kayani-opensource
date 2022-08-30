@@ -151,7 +151,7 @@ setup(
       license='MIT',
       packages=['add_app'],
       install_requires=[
-          'markdown',
+          'silicon',
       ],
       zip_safe=False
 )
