@@ -236,7 +236,7 @@ setup(
 
 Install the add_app project `pip install -e .`
 
-From the command prompt you simply should be abale to call `add` and the program should execute.
+From the command prompt you simply should be able to call `add` and the program should execute.
 
 ```bash
 $ add
