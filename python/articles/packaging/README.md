@@ -120,10 +120,59 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Success! the app has been imported and used successfully.
 
-# Publishing
+## Dependencies
+
+Using other packages is quite normal when developing python pacakges. The package we are devloping can depend on another package, we want to make sure the consumer of our package is able to use our package correctly without having to manually download those dependencies.
+
+Here is how that can be done, I am just inventing a name of a package called `silicon`.
+
+```python
+
+import silicon
+
+def add(x:int, y:int) -> int:
+    silicon.tell_a_joke()
+    return x + y
+
+```
+
+The add function now depends on the silicon package. `setup.py` needs to be modified so when our package is installed it will automatically install the `silicon` package.
+
+```python
+from setuptools import setup
+
+setup(
+      name='add_app',
+      version='0.1',
+      description='An app that adds!',
+      url='https://fakeurl.com',
+      author='Foo Bar',
+      author_email='foo.bar@foo.com',
+      license='MIT',
+      packages=['add_app'],
+      install_requires=[
+          'markdown',
+      ],
+      zip_safe=False
+)
+```
+
+`install_requires` is a list of packages. Once done issuing the command `python setup.py develop` will show you the packages tha re being installed.
+
+## Publishing
 
 We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
 
 In my professional experience, I usually will use a CI/CD tool such as github actions to build and deploy my package to a specific location.
 
 `python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
+
+`setup.py` can also be modified to download packages from other sources. Here is how you would do that.
+
+```python
+setup(
+    ...
+    dependency_links=['https://repository/repo/tarball/master#egg=package-1.0']
+    ...
+)
+```
