@@ -164,7 +164,7 @@ setup(
 ```python
 setup(
     ...
-    dependency_links=['https://repository/repo/tarball/master#egg=package-1.0']
+    dependency_links=['https://repository/repo/tarball/main#egg=package-1.0']
     ...
 )
 ```
