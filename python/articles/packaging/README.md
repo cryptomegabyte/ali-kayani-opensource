@@ -68,11 +68,9 @@ Ensure all those newly created file are saved and run `pytest -v -rP` and you sh
 
 ## [Setuptools](https://setuptools.pypa.io/en/latest/index.html)
 
-```
 Setuptools is a fully-featured, actively-maintained, and stable library designed to facilitate packaging Python projects.
 
 It helps developers to easily share reusable code (in the form of a library) and programs (e.g., CLI/GUI tools implemented in Python), that can be installed with pip and uploaded to PyPI.
-```
 
 We will be using this tool to package our project. Please visit there website to learn more.
 
@@ -181,12 +179,12 @@ In my professional experience, I usually will use a CI/CD tool such as github ac
 
 When issuing the `python setup.py sdist` or `python setup.py develop` or `pip install .` or `pip install -e .`commands you may have noticed `add_app.egg-info` folder being created.  
 
-```
+
 A "Python egg" is a logical structure embodying the release of a specific version of a Python project, comprising its code, resources, and metadata. There are multiple formats that can be used to physically encode a Python egg, and others can be developed. However, a key principle of Python eggs is that they should be discoverable and importable. That is, it should be possible for a Python application to easily and efficiently find out what eggs are present on a system, and to ensure that the desired eggs' contents are importable.
 
 The .egg format is well-suited to distribution and the easy uninstallation or upgrades of code, since the project is essentially self-contained within a single directory or file, unmingled with any other projects' code or resources. It also makes it possible to have multiple versions of a project simultaneously installed, such that individual programs can select the versions they wish to use.
 
-```
+
 ## Entry Point
 
 In other langauages you normally have a `main` entry point, perhaps to parse command line args, perhaps to setup the program, whatever the reason you can add a main entry point into the program and call it.
