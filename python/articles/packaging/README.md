@@ -157,15 +157,7 @@ setup(
 )
 ```
 
-`install_requires` is a list of packages. Once done issuing the command `python setup.py develop` will show you the packages tha re being installed.
-
-## Publishing
-
-We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
-
-In my professional experience, I usually will use a CI/CD tool such as github actions to build and deploy my package to a specific location.
-
-`python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
+`install_requires` is a list of packages. Once done issuing the command `python setup.py develop` will show you the packages that are being installed. Please note that adding packages like this assumes that the external package has been published on `pypi`.
 
 `setup.py` can also be modified to download packages from other sources. Here is how you would do that.
 
@@ -176,3 +168,12 @@ setup(
     ...
 )
 ```
+
+## Publishing
+
+We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
+
+In my professional experience, I usually will use a CI/CD tool such as github actions to build and deploy my package to a specific location.
+
+`python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
+
