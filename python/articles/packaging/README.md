@@ -241,6 +241,63 @@ $ add
 
 Add the classifiers section to `setup.py`.
 
+## Documentation
+
+We've built a package, to enable consumers to use the package we need solid documentation.
+
+```
+packaging/
+|--apps/
+|----add_app/
+|--------src/
+|----------__init__.py
+|----------add.py
+|--------tests/
+|----------test_add.py
+|--------__init__.py 
+|--------cli.py 
+|----setup.py
+|----README.rst <<< new >>>
+|----MANIFEST.in <<< new >>>
+|--.gitignore
+|--README.md
+|--requirements.txt
+```
+
+Create the following two files. Within MANIFEST.in add the following `include README.rst`
+
+Add the following to `README.rst`
+
+```
+add_app
+
+To add two numbers
+
+>>> import add_app
+>>> print(add_app.add(50,50))
+
+or
+
+$ pip install -e .
+$ add
+```
+
+Add the following to `aetup.py`
+
+```python
+def readme():
+    with open('README.rst') as f:
+        return f.read()
+
+setup(
+    ...
+    long_description=readme(), <<< place under description kwarg >>>
+    include_package_data=True,
+    ...
+)
+```
+
+
 ## Publishing
 
 We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.

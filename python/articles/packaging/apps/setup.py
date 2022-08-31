@@ -1,5 +1,9 @@
 from setuptools import setup
 
+def readme():
+    with open('README.rst') as f:
+        return f.read()
+
 setup(
       name='add_app',
       version='0.1',
@@ -20,5 +24,6 @@ setup(
                   'add = add_app.cli:main'
             ],
       },
+      include_package_data=True,
       zip_safe=False
 )
