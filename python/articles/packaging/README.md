@@ -282,7 +282,7 @@ $ pip install -e .
 $ add
 ```
 
-Add the following to `aetup.py`
+Add the following to `setup.py`
 
 ```python
 def readme():
