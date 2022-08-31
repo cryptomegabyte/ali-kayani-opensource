@@ -167,24 +167,6 @@ setup(
 )
 ```
 
-## Publishing
-
-We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
-
-In my professional experience, I usually will use a CI/CD tool such as github actions to build and deploy my package to a specific location.
-
-`python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
-
-### [*.egg-info](https://svn.python.org/projects/sandbox/trunk/setuptools/doc/formats.txt`)
-
-When issuing the `python setup.py sdist` or `python setup.py develop` or `pip install .` or `pip install -e .`commands you may have noticed `add_app.egg-info` folder being created.  
-
-
-A "Python egg" is a logical structure embodying the release of a specific version of a Python project, comprising its code, resources, and metadata. There are multiple formats that can be used to physically encode a Python egg, and others can be developed. However, a key principle of Python eggs is that they should be discoverable and importable. That is, it should be possible for a Python application to easily and efficiently find out what eggs are present on a system, and to ensure that the desired eggs' contents are importable.
-
-The .egg format is well-suited to distribution and the easy uninstallation or upgrades of code, since the project is essentially self-contained within a single directory or file, unmingled with any other projects' code or resources. It also makes it possible to have multiple versions of a project simultaneously installed, such that individual programs can select the versions they wish to use.
-
-
 ## Entry Point
 
 In other langauages you normally have a `main` entry point, perhaps to parse command line args, perhaps to setup the program, whatever the reason you can add a main entry point into the program and call it.
@@ -241,5 +223,23 @@ From the command prompt you simply should be able to call `add` and the program 
 ```bash
 $ add
 150
+
 ```
+
+## Publishing
+
+We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
+
+In my professional experience, I usually will use a CI/CD tool such as github actions to build and deploy my package to a specific location.
+
+`python setup.py sdist` will create a `dist/` which contains a tar file, this tar file can then be uploaded to a package repository.
+
+### [*.egg-info](https://svn.python.org/projects/sandbox/trunk/setuptools/doc/formats.txt`)
+
+When issuing the `python setup.py sdist` or `python setup.py develop` or `pip install .` or `pip install -e .`commands you may have noticed `add_app.egg-info` folder being created.  
+
+
+A "Python egg" is a logical structure embodying the release of a specific version of a Python project, comprising its code, resources, and metadata. There are multiple formats that can be used to physically encode a Python egg, and others can be developed. However, a key principle of Python eggs is that they should be discoverable and importable. That is, it should be possible for a Python application to easily and efficiently find out what eggs are present on a system, and to ensure that the desired eggs' contents are importable.
+
+The .egg format is well-suited to distribution and the easy uninstallation or upgrades of code, since the project is essentially self-contained within a single directory or file, unmingled with any other projects' code or resources. It also makes it possible to have multiple versions of a project simultaneously installed, such that individual programs can select the versions they wish to use.
 
