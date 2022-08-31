@@ -312,6 +312,6 @@ The .egg format is well-suited to distribution and the easy uninstallation or up
 
 # Conclusion
 
-Packaging is a relatively simple concept once you know how, the `setup tools` approach is not the only way you package your python, [python poetry](https://python-poetry.org/) is a good alternative.
+Packaging is a relatively simple concept once you know how, the `setup tools` approach is not the only way you package your project, [python poetry](https://python-poetry.org/) is a good alternative.
 
 Go fourth my friends, package to your hearts content!

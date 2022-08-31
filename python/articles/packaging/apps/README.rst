@@ -7,5 +7,5 @@ To add two numbers
 
 or
 
->>> $ pip install -e .
->>> $ add
+$ pip install -e .
+$ add
