@@ -297,6 +297,8 @@ setup(
 )
 ```
 
+The manifest.in file provides a mechanism where non `*.py` can be included. Just add the relative file paths and they will be installed with the package.
+
 
 ## Publishing
 
