@@ -1,4 +1,4 @@
-add_app
+# add_app
 
 To add two numbers
 
@@ -7,5 +7,7 @@ To add two numbers
 
 or
 
+```bash
 $ pip install -e .
 $ add
+```
