@@ -317,3 +317,8 @@ A "Python egg" is a logical structure embodying the release of a specific versio
 
 The .egg format is well-suited to distribution and the easy uninstallation or upgrades of code, since the project is essentially self-contained within a single directory or file, unmingled with any other projects' code or resources. It also makes it possible to have multiple versions of a project simultaneously installed, such that individual programs can select the versions they wish to use.
 
+Conclusion
+
+Packaging is a relatively simple concept once you know how, the `setup tools` approach is not the only way you package your python, [python poetry](https://python-poetry.org/) is a good alternative.
+
+Go fourth my friends, package to your hearts content!
