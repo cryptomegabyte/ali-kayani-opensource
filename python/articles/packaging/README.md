@@ -226,6 +226,21 @@ $ add
 
 ```
 
+## [Additional metadata](https://pypi.org/pypi?%3Aaction=list_classifiers)
+
+`setup.py` accepts kwargs (key word arguments), their are lots, I have found the classifiers section allow potential consumers to idenify if it fits there needs.
+
+```python
+      classifiers=[
+        'Development Status :: 1.2-Beta',
+        'Programming Language :: Python :: 3.10',
+        'License ::MIT License',
+        'Topic :: Calculator :: Adds numbers',
+      ],
+```
+
+Add the classifiers section to `setup.py`.
+
 ## Publishing
 
 We have an amazing app, it needs to be published so it can be consumed by our users. There are private and public respositories that enable you to store your code. [Pypi](https://pypi.org/) is a public repository of packages where you can store python packages.
