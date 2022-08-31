@@ -140,18 +140,11 @@ The add function now depends on the silicon package. `setup.py` needs to be modi
 from setuptools import setup
 
 setup(
-      name='add_app',
-      version='0.1',
-      description='An app that adds!',
-      url='https://fakeurl.com',
-      author='Foo Bar',
-      author_email='foo.bar@foo.com',
-      license='MIT',
-      packages=['add_app'],
+      ...
       install_requires=[
           'silicon',
       ],
-      zip_safe=False
+      ...
 )
 ```
 
