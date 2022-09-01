@@ -1,4 +1,4 @@
-from division import division
+from src.division import division
 
 """
 The first line should contain the result of integer division,  a//b . 
@@ -20,7 +20,7 @@ def test_division() -> None:
     test_wrapper = None
 
     # when
-    test_wrapper = division()
+    test_wrapper = division(3,5)
 
     # then
-    assert test_wrapper == (0,3.5)
+    assert test_wrapper == (0,0.6)
