@@ -73,7 +73,7 @@ def test_multiply( x:int, y:int ,result:int ) -> None:
 
 ## Multiply.py
 
-Add the following to the multiply file in `app/src/src/`.
+Add the following to the multiply file in `app/src/`.
 
 ```python
 def multiply(x: int, y:int) -> int:
