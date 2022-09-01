@@ -87,6 +87,18 @@ Run the tests from the `app/` folder `pytest -v -rP` and they should pass. I don
 
 Functions can be passed as arguments. For example `def a_function(another_function)`. Knowing this let's put together a function called decorator, which takes in a function.
 
+```
+app/
+|---src/
+|-----__init__.py
+|-----multiply.py
+|-----decorator.py
+|---tests/
+|-----__init__.py
+|-----test_multiply.py
+|-----test_decorator.py
+```
+
 ## test_decorator.py
 
 Add the following to the test decorator file under `app/tests/`.
@@ -124,18 +136,6 @@ Run the tests from the `app/` folder `pytest -v -rP` and they should pass.
 Here what we have done is taken a function and passed it into another function. Notice that I am calling the passed in function like so `func(5,10)`.
 
 This isn't a great example of a decorator but it demonstrates the concept that a function can take in another function and call it.
-
-```
-app/
-|---src/
-|-----__init__.py
-|-----multiply.py
-|-----decorator.py
-|---tests/
-|-----__init__.py
-|-----test_multiply.py
-|-----test_decorator.py
-```
 
 # Closures
 
