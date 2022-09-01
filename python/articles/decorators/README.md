@@ -121,7 +121,7 @@ def decorator(func: Callable) -> Callable:
 
 Run the tests from the `app/` folder `pytest -v -rP` and they should pass.
 
-Here what we have done is taken a function and passed it into another function. Notice on line `119` that I am calling the passed in function.
+Here what we have done is taken a function and passed it into another function. Notice that I am calling the passed in function like so `func(5,10)`.
 
 This isn't a great example of a decorator but it demonstrates the concept that a function can take in another function and call it.
 
