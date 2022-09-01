@@ -16,7 +16,7 @@ The result of the float division is 3/5 = 0.6.
 """
 
 @pytest.mark.parametrize("x,y,result",[(3,5,(0,0.6)),(5,3,(1,1.6666666666666667)),(50,100,(0,0.5))])
-def test_division(x,y,result) -> None:
+def test_division(x:int,y:int,result:tuple) -> None:
     
     # given
     test_wrapper = None
