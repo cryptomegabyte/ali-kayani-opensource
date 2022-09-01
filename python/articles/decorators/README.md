@@ -26,7 +26,7 @@ Create a virtual environment: `python -m venv venv`.
 
 Activate the virtual environment: `. venv/bin/activate`
 
-## Rnstall dependencies
+## Install dependencies
 
 Install the items packages listed within the requirements file: `python -m pip install -r requirements.txt`
 
@@ -124,6 +124,18 @@ Run the tests from the `app/` folder `pytest -v -rP` and they should pass.
 Here what we have done is taken a function and passed it into another function. Notice that I am calling the passed in function like so `func(5,10)`.
 
 This isn't a great example of a decorator but it demonstrates the concept that a function can take in another function and call it.
+
+```
+app/
+|---src/
+|-----__init__.py
+|-----multiply.py
+|-----decorator.py
+|---tests/
+|-----__init__.py
+|-----test_multiply.py
+|-----test_decorator.py
+```
 
 # Closures
 
