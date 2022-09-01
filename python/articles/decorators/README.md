@@ -81,7 +81,7 @@ def multiply(x: int, y:int) -> int:
 
 ```
 
-Run the tests from the `app/` folder `pytest -v -rP` and they should pass. I don't think much explanation is needed as to what is happening here, I have a function that simple multiplies two numbers.
+Run the tests from the `app/` folder `pytest -v -rP` and they should pass. I don't think much explanation is needed as to what is happening here, I have a function that simply multiplies two numbers.
 
 ## Passing functions as arguments
 
