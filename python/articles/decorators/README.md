@@ -315,3 +315,6 @@ Run the tests from the `app/` folder `pytest -v -rP` and they should pass. What 
 
 The decorator test is not needed, remember to delete it as indicated.
 
+##  Conclusion
+
+Decorators are a useful tool to have in your arsenal. Use them wisely.
