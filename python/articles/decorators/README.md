@@ -48,7 +48,7 @@ app/
 
 Add the following to the multiply test file in `app/src/tests/`.
 
-```
+```python
 import pytest
 
 """
@@ -75,7 +75,7 @@ def test_multiply( x:int, y:int ,result:int ) -> None:
 
 Add the following to the multiply file in `app/src/src/`.
 
-```
+```python
 def multiply(x: int, y:int) -> int:
     return x * y
 
@@ -91,7 +91,7 @@ Functions can be passed as arguments. For example `def a_function(another_functi
 
 Add the following to the test decorator file under `app/tests/`.
 
-```
+```python
 from src.multiply import multiply
 from src.decorator import decorator
 
@@ -111,7 +111,7 @@ def test_decorator() -> None:
 
 Add the following to the decorator file under `app/src/`
 
-```
+```python
 from typing import Callable
 
 
