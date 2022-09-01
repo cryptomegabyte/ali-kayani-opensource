@@ -12,7 +12,7 @@ In short they are higher order functions. It's a function that takes in another 
 
 I will demonstrate the concept of a decorator through an example.  Create a folder called app.
 
-## requirements.txt
+## Requirements.txt
 
 Create a requirments.txt file in the `app/` folder and add the following text:
 
@@ -26,11 +26,11 @@ Create a virtual environment: `python -m venv venv`.
 
 Activate the virtual environment: `. venv/bin/activate`
 
-## install dependencies
+## Rnstall dependencies
 
 Install the items packages listed within the requirements file: `python -m pip install -r requirements.txt`
 
-## structure
+## Structure
 
 Create the following folder structure within the `app/` folder.
 
@@ -71,7 +71,7 @@ def test_multiply( x:int, y:int ,result:int ) -> None:
 
 ```
 
-## multiply.py
+## Multiply.py
 
 Add the following to the multiply file in `app/src/src/`.
 
@@ -81,11 +81,11 @@ def multiply(x: int, y:int) -> int:
 
 ```
 
-Run the tests from the `app/` folder `pytest -v -rP` and they should pass.
+Run the tests from the `app/` folder `pytest -v -rP` and they should pass. I don't think much explanation is needed as to what is happening here, I have a function that simple multiplies two numbers.
 
-## passing functions as arguments
+## Passing functions as arguments
 
-Functions can be passed as arguments. For example `def a_function(another_function)`. Nowing this let's put together a function called decorator, which takes in a function.
+Functions can be passed as arguments. For example `def a_function(another_function)`. Knowing this let's put together a function called decorator, which takes in a function.
 
 ## test_decorator.py
 
@@ -107,7 +107,7 @@ def test_decorator() -> None:
     assert test_wrapper == 50
 ```
 
-## decorator.py
+## Decorator.py
 
 Add the following to the decorator file under `app/src/`
 
