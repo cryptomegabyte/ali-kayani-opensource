@@ -26,7 +26,23 @@ Create a virtual environment: `python -m venv venv`.
 
 Activate the virtual environment: `. venv/bin/activate`
 
-# Install dependencies
+## install dependencies
 
 Install the items packages listed within the requirements file: `python -m pip install -r requirements.txt`
+
+## structure
+
+Create the following folder structure within the `app/` folder.
+
+```
+app/
+|---src/
+|-----__init__.py
+|-----multiply.py
+|---tests/
+|-----__init__.py
+|-----test_multiply.py
+```
+
+## test_multiply.py
 
