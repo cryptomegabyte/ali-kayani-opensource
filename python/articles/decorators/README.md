@@ -46,3 +46,84 @@ app/
 
 ## test_multiply.py
 
+Add the following to the multiply test file in `app/src/tests/`.
+
+```
+import pytest
+
+"""
+Tests the multiplication function
+"""
+
+from src.multiply import multiply
+
+@pytest.mark.parametrize("x,y,result",[(3,3,9),(8,8,64),(5,2,10)])
+def test_multiply( x:int, y:int ,result:int ) -> None:
+    
+    # given
+    test_wrapper = None
+
+    # when
+    test_wrapper = multiply(x,y)
+
+    # then
+    assert test_wrapper == result
+
+```
+
+## multiply.py
+
+Add the following to the multiply file in `app/src/src/`.
+
+```
+def multiply(x: int, y:int) -> int:
+    return x * y
+
+```
+
+Run the tests from the `app/` folder `pytest -v -rP` and they should pass.
+
+## passing functions as arguments
+
+Functions can be passed as arguments. For example `def a_function(another_function)`. Nowing this let's put together a function called decorator, which takes in a function.
+
+## test_decorator.py
+
+Add the following to the test decorator file under `app/tests/`.
+
+```
+from src.multiply import multiply
+from src.decorator import decorator
+
+def test_decorator() -> None:
+
+    # given
+    test_wrapper = None
+
+    # when
+    test_wrapper = decorator(multiply)
+
+    # then
+    assert test_wrapper == 50
+```
+
+## decorator.py
+
+Add the following to the decorator file under `app/src/`
+
+```
+from typing import Callable
+
+
+def decorator(func: Callable) -> Callable:
+    return func(5,10)
+```
+
+Run the tests from the `app/` folder `pytest -v -rP` and they should pass.
+
+Here what we have done is taken a function and passed it into another function. Notice on line `119` that I am calling the passed in function.
+
+This isn't a great example of a decorator but it demonstrates the concept that a function can take in another function and call it.
+
+# Closures
+
