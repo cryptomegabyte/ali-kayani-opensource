@@ -137,5 +137,71 @@ Here what we have done is taken a function and passed it into another function. 
 
 This isn't a great example of a decorator but it demonstrates the concept that a function can take in another function and call it.
 
-# Closures
+Now we're going to develop the idea that functions can be nested in other functions. These are called closures.
+## Closures
+
+A closure encapsulates logic, everything from data through to other functions.
+
+```python
+def outer_function():
+
+    global_variable = "Hello"
+
+    def inner_function():
+        local_variable = "World!"
+        print(f"{global_variable} {local_variable}")
+        return local_variable
+
+    inner_function()
+
+    return global_variable
+```
+
+```bash
+>>> outer_function()
+>>> "Hello World!"
+
+```
+
+The `inner_function` is locally scoped to the `outer_function` it only exists when the `outer_function` is called. The `outer_function` encapsulates all the other logic.
+
+If you attempt to do this:
+
+```bash
+>>> inner_function()
+```
+
+You will get an error. The `inner_function` is scoped to the outer function and only exists when it does.
+
+## Returning functions
+
+As you have probably correctly deduced from reading the above, functions can also return other functions.
+
+```python
+def shape(letter):
+
+    def square():
+        return "I am a square"
+
+    def triangle():
+        return "I am a square"
+
+    if letter == s:
+        return square
+    else:
+        return triangle
+```
+
+```bash
+>>> my_shape = shape(t)
+
+```
+
+What we are doing here is return a reference to a function based on a letter that we pass into the functon. In the above example we return a reference to the `triangle` function. Remember it only exists when the shape function is called.
+
+```bash
+>>> my_shape()
+```
+
+At this point you not be wrong in thinking that nesting functions like this is rather like developing classes. Remember that functions are first class objects.
 
