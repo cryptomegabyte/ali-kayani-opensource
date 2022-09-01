@@ -1,6 +1,6 @@
 # ali-kayani-opensource-python
 
-Hi, this is a repository of my `python` centric knowledge. It's a place where i create software, solve different challenges and keep abreast of all things devops.
+Hi, this is a repository of my `python` centric knowledge. It's a place where i create software, solve different challenges and keep abreast of all things python.
 
 Feel free to use anything you see here in your own projects.
 
