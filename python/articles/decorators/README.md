@@ -184,7 +184,7 @@ def shape(letter):
         return "I am a square"
 
     def triangle():
-        return "I am a square"
+        return "I am a triangle"
 
     if letter == s:
         return square
