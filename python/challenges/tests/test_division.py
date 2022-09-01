@@ -1,3 +1,4 @@
+import pytest
 from src.division import division
 
 """
@@ -14,13 +15,14 @@ The result of the float division is 3/5 = 0.6.
 
 """
 
-def test_division() -> None:
+@pytest.mark.parametrize("x,y,result",[(3,5,(0,0.6)),(5,3,(1,1.6666666666666667)),(50,100,(0,0.5))])
+def test_division(x,y,result) -> None:
     
     # given
     test_wrapper = None
 
     # when
-    test_wrapper = division(3,5)
+    test_wrapper = division(x,y)
 
     # then
-    assert test_wrapper == (0,0.6)
+    assert test_wrapper == result
