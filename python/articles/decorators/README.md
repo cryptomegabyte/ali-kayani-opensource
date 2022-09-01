@@ -296,9 +296,11 @@ def multiply(x: int, y:int) -> int:
 
 ```python
 from typing import Callable
+import functools
 
 
 def decorator(func: Callable) -> None:
+    @functools.wraps(func)
     def inner_wrapper(*args, **kwargs):
         print("Telemetry: The function is starting")
         result = func(*args, **kwargs)
