@@ -205,3 +205,111 @@ What we are doing here is return a reference to a function based on a letter tha
 
 At this point you not be wrong in thinking that nesting functions like this is rather like developing classes. Remember that functions are first class objects.
 
+## Decorators
+
+We've seen a basic (not so good) example of a potential decorator. You have seen how functions can be nested and how we can pass function references. Let's now put that all together and develop a `proper` decorator.
+
+All the pieces are there, we just need to put them together. Remember at the start of this article I was trying to add telemetry to an existing python project.
+
+```
+app/
+|---src/
+|-----__init__.py
+|-----multiply.py
+|-----decorator.py <<< modified >>>
+|---tests/
+|-----__init__.py
+|-----test_multiply.py
+|-----test_decorator.py <<< modified >>>
+```
+
+## test_decorator.py
+
+```python
+
+from src.multiply import multiply
+from src.decorator import decorator
+
+def test_decorator() -> None:
+
+    # given
+    test_wrapper = None
+
+    # when
+    test_wrapper = decorator(multiply)
+
+    # then
+    assert test_wrapper() == 50
+```
+
+The test wrapper is receiving a reference to the `multiply` function. In my assertion I am calling the test_wrapper as a function `test_wrapper()`.
+
+## decorator.py
+
+```python
+from typing import Callable
+
+
+def decorator(func: Callable) -> None:
+    def inner_wrapper():
+        print("Telemetry: The function is starting")
+        result = func(5,10)
+        print("Telemetry: The function has executed")
+        return result
+    return inner_wrapper
+```
+
+I have an outer function and an inner function which form a `closure`. The outer `decorator` function accepts a function argument, the inner function calls the function that I have passed in and the result is assigned to a variable which is returned.
+
+Run the tests from the `app/` folder `pytest -v -rP` and they should pass. So what's the big deal you might be asking?
+
+Well, we have managed to modify the behaviour of the `multiply` function without touching its code or upsetting it's test! Powerful behaviour.
+
+## @ syntax
+
+Modify the following files
+
+```
+app/
+|---src/
+|-----__init__.py
+|-----multiply.py <<< modified >>>
+|-----decorator.py <<< modified >>>
+|---tests/
+|-----__init__.py
+|-----test_multiply.py
+|-----test_decorator.py <<< delete >>>
+```
+
+## multiply.py
+
+```python
+from src.decorator import decorator
+
+@decorator
+def multiply(x: int, y:int) -> int:
+    return x * y
+
+```
+
+## decorator.py
+
+```python
+from typing import Callable
+
+
+def decorator(func: Callable) -> None:
+    def inner_wrapper(*args, **kwargs):
+        print("Telemetry: The function is starting")
+        result = func(*args, **kwargs)
+        print("Telemetry: The function has executed")
+        return result
+    return inner_wrapper
+```
+
+Run the tests from the `app/` folder `pytest -v -rP` and they should pass. What we have done is to use the `@` syntax to wrap the `multiply` function. This in my opinion is not only cleaner but modifies the function behaviour without modifying its operation. 
+
+`@decorator` essentially means `decorator(multiply)`.
+
+The decorator test is not needed, remember to delete it as indicated.
+
