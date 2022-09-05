@@ -4,6 +4,7 @@ Are you a fan of warhammer 40k? If you haven't heard of it, don't worry, I was s
 
 In order to understand `args` & `kwargs` let's dive into an example.
 
+# *args
 ## App
 
 Create an `app/` folder and add the follwing structure.
@@ -132,3 +133,57 @@ ERROR app/tests/test_sum.py
 What's happened? We sent in `(2,3,4)` and we expected the function to add it, but it didn't. The function definition itself expects two arguments, not three. Is there a way we could make the function work no matter how many inputs we provide?
 
 Short answer: `yes`!
+
+Let's start by modifying our test.
+
+## test_sum.py
+
+```python
+import pytest
+from src.sum import sum
+
+@pytest.mark.parametrize("numbers,result",[((5,2),7),((7,7),14),((2,3,4),9)])
+def test_sum(numbers: tuple, result: int) -> None:
+    """
+    Tests the sum function
+    """
+
+    # given
+    test_wrapper = None
+
+    # when
+    test_wrapper = sum(*numbers)
+
+    # then
+    assert test_wrapper == result
+
+```
+
+# sum.py
+
+```python
+def sum(*numbers: tuple) -> int:
+    """
+    Adds numbers
+    Input:
+        numbers: tuple
+    Output:
+        int: sum
+    """
+    total = 0
+
+    for number in numbers:
+        total += number
+
+    return total
+
+```
+
+Run `pytest` and the tests should pass. What we have done is to modify the function behaviour to take in an unlimited amount of arguments. 
+
+Take a close look at the function definition `def sum(*numbers: tuple) -> int:`. I am passing in a tuple called numbers with an asterix pre-fixed to it. 
+
+Take note that the name does not matter, I could change the function definition to `def sum(*args: tuple) -> int:` and the code would work the same, normally, engineers do just that. The name does not matter it's the `*` that does.
+
+# **kwargs
+

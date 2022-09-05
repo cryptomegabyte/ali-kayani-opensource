@@ -1,10 +1,14 @@
-def sum(x: int, y:int) -> int:
+def sum(*numbers: tuple) -> int:
     """
     Adds numbers
     Input:
-        x: int
-        y: int
+        numbers: tuple
     Output:
         int: sum
     """
-    return x + y
+    total = 0
+
+    for number in numbers:
+        total += number
+
+    return total
