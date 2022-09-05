@@ -21,14 +21,16 @@ app/
 
 ## requirements.txt
 
-Copy the follwing into the requirments.txt file.
+Copy the follwing into the requirements.txt file.
 
 ```python
 pytest
 ```
 
 Create a virtual enviornment: `python -m venv venv`.
+
 Activate the virtual environment: `. venv/bin/activate`.
+
 Install the requirments: `python -m pip install -r requirements.txt`.
 
 ## test_sum.py
