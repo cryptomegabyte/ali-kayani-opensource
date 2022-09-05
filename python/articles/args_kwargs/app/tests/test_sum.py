@@ -1,6 +1,8 @@
+import pytest
 from src.sum import sum
 
-def test_sum() -> None:
+@pytest.mark.parametrize("x,y,result",[(5,2,7),(7,7,14),(2,3,4,9)])
+def test_sum(x:int, y:int, result:int) -> None:
     """
     Tests the sum function
     """
@@ -9,8 +11,8 @@ def test_sum() -> None:
     test_wrapper = None
 
     # when
-    test_wrapper = sum(5,2)
+    test_wrapper = sum(x,y)
 
     # then
 
-    assert test_wrapper == 7
+    assert test_wrapper == result

@@ -53,7 +53,7 @@ def test_sum() -> None:
 
     # then
 
-    assert test_wrapper == 7
+    assert test_wrapper == 
 ```
 
 Here we have a test which tests to see if the output of the sum function equals `7`.
@@ -81,6 +81,54 @@ From the `app/`directory run `pytest`. The test should pass.  Let's add more tes
 
 ```python
 
+import pytest <<< new >>>
+from src.sum import sum
 
+@pytest.mark.parametrize("x,y,result",[(5,2,7)]) <<< new >>>
+def test_sum(x:int, y:int, result:int) -> None:
+    """
+    Tests the sum function
+    """
+
+    # given
+    test_wrapper = None
+
+    # when
+    test_wrapper = sum(x,y)
+
+    # then
+
+    assert test_wrapper == result
 
 ```
+
+Run `pytest` and the test should pass. Let's add more data. Modify the following line:
+
+```python
+@pytest.mark.parametrize("x,y,result",[(5,2,7),(7,7,14)]) <<< modify >>>
+```
+
+Run `pytest` again and the test should pass.
+
+Let's add one more set of data, like this:
+
+```python
+@pytest.mark.parametrize("x,y,result",[(5,2,7),(7,7,14),(2,3,4,9)])
+```
+Run `pytest` and the test should now fail.
+
+```bash
+____________________________ ERROR collecting app/tests/test_sum.py ____________________________
+app/tests/test_sum.py::test_sum: in "parametrize" the number of names (3):
+  ['x', 'y', 'result']
+must be equal to the number of values (4):
+  (2, 3, 4, 6)
+=================================== short test summary info ====================================
+ERROR app/tests/test_sum.py
+!!!!!!!!!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+======================================= 1 error in 0.04s =======================================
+```
+
+What's happened? We sent in `(2,3,4)` and we expected the function to add it, but it didn't. The function definition itself expects two arguments, not three. Is there a way we could make the function work no matter how many inputs we provide?
+
+Short answer: `yes`!
