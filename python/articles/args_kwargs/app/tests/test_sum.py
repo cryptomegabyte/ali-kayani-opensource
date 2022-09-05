@@ -6,7 +6,7 @@ def test_sum() -> None:
     """
 
     # given
-    test_wrapper = None;
+    test_wrapper = None
 
     # when
     test_wrapper = sum(5,2)
