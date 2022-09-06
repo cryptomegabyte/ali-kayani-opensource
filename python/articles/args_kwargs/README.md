@@ -399,7 +399,5 @@ def test_phone_book(test_person, phone_record) -> None:
 
 Notice that the second person in the list has an email field. Run `pytest` and the test should pass. 
 
-This means that like `args` we can send a variable number of keywords into an argument at runtime without explicity having to define what they are.  Powerful behaviour.
-
-
+This means that like `args` we can send a variable number of keyword arguments into a function at runtime without explicity having to define what they are.  Powerful behaviour.
 
