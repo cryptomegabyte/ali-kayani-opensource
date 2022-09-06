@@ -189,5 +189,217 @@ Take note that the name does not matter, I could change the function definition 
 
 We've seen how we can sent a variable number of arguments into a function that is determined at runtime, now we're going to look at how we can send in a variable numbers of `keyword arguments` (kwargs) into a function.
 
-The name `kwargs` is not important. I can name it `employee` if I wanted, what is important is the double asterisk `**`.
+The name `kwargs` is not important. I can name it `person` if I wanted, what is important is the double asterisk `**`.
+
+Let's add a function to our app which accepts a name and a phone number and returns it.
+
+```
+app/
+|---src/
+|-----__init__.py
+|-----sum.py
+|-----phone_book.py <<< create >>>
+|---tests
+|-----__init__.py
+|-----test_sum.py
+|-----test_phone_book.py <<< create >>>
+|---requirements.txt
+```
+
+## test_phone_book.py
+
+```python
+from src.phone_book import phone_book
+
+"""
+As a software engineer I need to write a function
+Which returns a dict consisting of a persons name and phone number.
+
+"""
+
+def test_phone_book() -> None:
+
+    # given
+    test_wrapper = None
+    
+    # when
+    test_wrapper = phone_book(name="John Doe", phone_numer="00000000")
+
+    # then
+    assert test_wrapper == {
+        "name": "John Doe",
+        "phone_number": "00000000",
+
+    }
+```
+
+## phone_book.py
+
+```python
+def phone_book(name: str = "", phone_numer: str ="") -> dict:
+    """
+    A function which returns a phone book
+    Input:
+        name: str: Persons name
+        phone_number: str: Phone number
+    Returns:
+        phone_book: dict
+    """
+
+    return {
+        "name": name,
+        "phone_number": phone_numer
+    }
+```
+
+Run `pytest` the test passes. We want to add an address field to our phonebook record, we will have to update the test and then the code. Let's do that.
+
+## test_phone_book.py
+
+```python
+from src.phone_book import phone_book
+
+"""
+As a software engineer I need to write a function
+Which returns a dict consisting of a persons name and phone number.
+
+"""
+
+def test_phone_book() -> None:
+
+    # given
+    test_wrapper = None
+    
+    # when
+    test_wrapper = phone_book(name="John Doe", phone_numer="00000000", address="Test address")
+
+    # then
+    assert test_wrapper == {
+        "name": "John Doe",
+        "phone_number": "00000000",
+        "address": "Test address"
+    }
+```
+
+## phone_book.py
+
+```python
+def phone_book(name: str = "", phone_numer: str ="", address="") -> dict:
+    """
+    A function which returns a phone book
+    Input:
+        name: str: Persons name
+        phone_number: str: Phone number
+    Returns:
+        phone_book: dict
+    """
+
+    return {
+        "name": name,
+        "phone_number": phone_numer,
+        "address": address
+    }
+```
+Run `pytest` the test passes. If we wanted to add an `email` field we would need to follow the same steps. It can get quite repetitive, luckily enough `**` to the rescue.
+
+We can define as many fields as we want without having to define it in our function definition.
+
+Modify the test and code as shown.
+
+## test_phone_book.py
+
+```python
+from src.phone_book import phone_book
+
+"""
+As a software engineer I need to write a function
+Which returns a dict consisting of a persons name and phone number.
+
+"""
+
+def test_phone_book() -> None:
+
+    test_person = {
+        "name": "John Doe",
+        "phone_number": "00000000",
+        "address": "Test address"
+    }
+
+    # given
+    test_wrapper = None
+    
+    # when
+    test_wrapper = phone_book(**test_person)
+
+    # then
+    assert test_wrapper == test_person
+
+```
+
+## phone_book.py
+
+```python
+def phone_book(**person) -> dict:
+    """
+    A function which returns a phone book
+    Input:
+        name: str: Persons name
+        phone_number: str: Phone number
+    Returns:
+        phone_book: dict
+    """
+
+    return {
+        **person
+    }
+```
+
+Run `pytest` the test passes. Notice how I am using `**` in my test and code. I will now prove to you that it doesn't matter what attribute our person has, the function will always return a phone book record of their details without modification of the function definition.
+
+Modify the test:
+
+```python
+import pytest
+from src.phone_book import phone_book
+
+"""
+As a software engineer I need to write a function
+Which returns a dict consisting of a persons name and phone number.
+
+"""
+
+test_phone_book_data = [
+    {
+        "name": "John Doe",
+        "phone_number": "00000000",
+        "address": "Test address"
+    },
+    {
+        "name": "John Doe's Wife",
+        "phone_number": "00000001",
+        "address": "Test address",
+        "email": "test@test.com"
+    },
+]
+
+@pytest.mark.parametrize("test_person,phone_record",[(test_phone_book_data[0],test_phone_book_data[0]),(test_phone_book_data[1],test_phone_book_data[1])])
+def test_phone_book(test_person, phone_record) -> None:
+
+    # given
+    test_wrapper = None
+    
+    # when
+    test_wrapper = phone_book(**test_person)
+
+    # then
+    assert test_wrapper == phone_record
+
+
+```
+
+Notice that the second person in the list has an email field. Run `pytest` and the test should pass. 
+
+This means that like `args` we can send a variable number of keywords into an argument at runtime without explicity having to define what they are.  Powerful behaviour.
+
+
 
