@@ -339,7 +339,7 @@ def test_phone_book() -> None:
 ## phone_book.py
 
 ```python
-def phone_book(**person) -> dict:
+def phone_book(**person: dict) -> dict:
     """
     A function which returns a phone book
     Input:
@@ -383,7 +383,7 @@ test_phone_book_data = [
 ]
 
 @pytest.mark.parametrize("test_person,phone_record",[(test_phone_book_data[0],test_phone_book_data[0]),(test_phone_book_data[1],test_phone_book_data[1])])
-def test_phone_book(test_person, phone_record) -> None:
+def test_phone_book(test_person: dict, phone_record: dict) -> None:
 
     # given
     test_wrapper = None
