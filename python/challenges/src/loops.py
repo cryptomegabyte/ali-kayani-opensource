@@ -18,10 +18,8 @@ def loops(x: int) -> list:
     # Generate initial numbers
     numbers = list(range(x))
 
-    # Loop through those numbers and square them
-    # then push them into the squared list
-    for number in numbers:
-        squared.append(number**2)
+    # Use list comprehension to square numbers
+    squared = [x**2 for x in numbers]
 
     # return squared numbers
     return squared
