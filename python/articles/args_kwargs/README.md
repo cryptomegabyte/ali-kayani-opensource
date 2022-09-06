@@ -123,7 +123,7 @@ ____________________________ ERROR collecting app/tests/test_sum.py ____________
 app/tests/test_sum.py::test_sum: in "parametrize" the number of names (3):
   ['x', 'y', 'result']
 must be equal to the number of values (4):
-  (2, 3, 4, 6)
+  (2, 3, 4, 9)
 =================================== short test summary info ====================================
 ERROR app/tests/test_sum.py
 !!!!!!!!!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -186,4 +186,8 @@ Take a close look at the function definition `def sum(*numbers: tuple) -> int:`.
 Take note that the name does not matter, I could change the function definition to `def sum(*args: tuple) -> int:` and the code would work the same, normally, engineers do just that. The name does not matter it's the `*` that does.
 
 # **kwargs
+
+We've seen how we can sent a variable number of arguments into a function that is determined at runtime, now we're going to look at how we can send in a variable numbers of `keyword arguments` (kwargs) into a function.
+
+The name `kwargs` is not important. I can name it `employee` if I wanted, what is important is the double asterisk `**`.
 
