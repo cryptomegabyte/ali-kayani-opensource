@@ -401,3 +401,13 @@ Notice that the second person in the list has an email field. Run `pytest` and t
 
 This means that like `args` we can send a variable number of keyword arguments into a function at runtime without explicity having to define what they are.  Powerful behaviour.
 
+## Conclusion
+
+We've seen practial test driven examples of how we can use kwargs and args to pass in a variable number of arguments at runtime.
+
+You can continue to pass in `standard` arguments into a function along with kwargs and args.
+
+```python
+def example_function(alpha, beta, *args, **kwargs):
+```
+Standard arguments (alpha, beta) have to be defined first, then `*args` and finally `**kwargs`.
