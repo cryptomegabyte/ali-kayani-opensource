@@ -11,7 +11,7 @@ def loops(x: int) -> list:
     # Squared number list
     squared = []
 
-    # If x is zero just return 0
+    # If x is zero or a negative number just return 0
     if  x == 0 or x < 0:
         return [0]
 
