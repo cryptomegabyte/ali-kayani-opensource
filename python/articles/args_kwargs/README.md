@@ -32,7 +32,7 @@ Create a virtual enviornment: `python -m venv venv`.
 
 Activate the virtual environment: `. venv/bin/activate`.
 
-Install the requirments: `python -m pip install -r requirements.txt`.
+Install the requirements: `python -m pip install -r requirements.txt`.
 
 ## test_sum.py
 
