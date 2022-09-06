@@ -2,6 +2,7 @@ from src.loops import loops
 
 """
 For all non-negative integers i < n, print i**2.
+1 <= n <= 20
 """
 
 def test_loops(n: int) -> list:
