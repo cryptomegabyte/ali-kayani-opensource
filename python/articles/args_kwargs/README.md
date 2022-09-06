@@ -54,7 +54,7 @@ def test_sum() -> None:
 
     # then
 
-    assert test_wrapper == 
+    assert test_wrapper == 7
 ```
 
 Here we have a test which tests to see if the output of the sum function equals `7`.
