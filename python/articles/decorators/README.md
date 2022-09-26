@@ -42,6 +42,7 @@ app/
 |---tests/
 |-----__init__.py
 |-----test_multiply.py
+|--requirements.txt
 ```
 
 ## test_multiply.py
