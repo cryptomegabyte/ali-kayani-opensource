@@ -203,3 +203,13 @@ def dict_unpack(data: dict, operation: str) -> tuple[any,any]:
             return a,b
 ```
 
+Based on what type of data we want to select (keys, values or key-value pairs) we can unpack that data and return it.
+
+## Packing
+
+We've looked at unpacking, let's now take a look at Packing itself. I think of the * operator as the unpacking operator but it can be used for quite the opposite. It can also be used to collect variables.
+
+Let's take a look at how it can be used to `pack` items.
+
+## test_pack.py
+

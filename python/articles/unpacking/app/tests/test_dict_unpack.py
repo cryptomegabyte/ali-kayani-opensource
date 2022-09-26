@@ -9,7 +9,7 @@ from functions.dict_unpack import dict_unpack
 
 def test_dict_unpack() -> None:
     """
-    Tests demonstrating how to unpack tuples
+    Tests demonstrating how to unpack dicts
     """    
     # given
     test_wrapper = None

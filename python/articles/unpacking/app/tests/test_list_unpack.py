@@ -7,7 +7,7 @@ from functions.list_unpack import list_unpack
 
 def test_tuple_unpack() -> None:
     """
-    Tests demonstrating how to unpack tuples
+    Tests demonstrating how to unpack lists
     """    
     # given
     test_wrapper = None
