@@ -120,7 +120,7 @@ def list_unpack(data: tuple) -> tuple[int,int]:
     return a,b
 ```
 
-Here we are simply unpacking the tuple data which is equal to `(1,2)` and assigning it variables a and b which we then return.
+Here we are simply unpacking the list data which is equal to `[1,2]` and assigning it variables a and b which we then return.
 
 `a,b = [1,2]`. a = 1 and b = 2. simple enough.
 
