@@ -243,7 +243,7 @@ def test_pack() -> None:
     test_data_list = [1,2,3]
 
     # when
-    test_wrapper = pack(test_data)
+    test_wrapper = pack(test_data_list)
     a, b = test_wrapper
     
     # then
