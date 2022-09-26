@@ -112,7 +112,7 @@ def test_tuple_unpack() -> None:
 Add the following code to the file and run pytest `pytest`. The test should pass.
 
 ```python
-def list_unpack(data: tuple) -> tuple[int,int]:
+def list_unpack(data: list) -> tuple[int,int]:
     """
     Demonstrates unpacking of a list
     """

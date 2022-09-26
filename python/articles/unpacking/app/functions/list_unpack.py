@@ -1,4 +1,4 @@
-def list_unpack(data: tuple) -> tuple[int,int]:
+def list_unpack(data: list) -> tuple[int,int]:
     """
     Demonstrates unpacking of a list
     """
