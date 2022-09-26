@@ -213,3 +213,56 @@ Let's take a look at how it can be used to `pack` items.
 
 ## test_pack.py
 
+Add the following code to the file and run pytest `pytest`. The test should fail.
+
+```python
+from functions.pack import pack
+
+# Behviours:
+
+# 1. Pack a tuple
+# 2. Pack a list
+
+def test_pack() -> None:
+    """
+    Tests demonstrating how to pack using *
+    """    
+    # given
+    test_wrapper = None
+    test_data = (1,2,3)
+
+    # when
+    test_wrapper = pack(test_data)
+    a, b = test_wrapper
+    
+    # then
+    assert a == [1,2]
+    assert b == 3
+
+    # given
+    test_data_list = [1,2,3]
+
+    # when
+    test_wrapper = pack(test_data)
+    a, b = test_wrapper
+    
+    # then
+    assert a == [1,2]
+    assert b == 3
+```
+
+## pack.py
+
+Add the following code to the file and run pytest `pytest`. The test should pass.
+
+```python
+def pack(data: any) -> tuple[any,any]:
+    """
+    Demonstrates the use of packing operator *
+    """
+    *a,b = data
+    return a,b
+```
+
+The * operator can be used to gather data.
+
