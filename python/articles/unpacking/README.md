@@ -318,3 +318,66 @@ Let's look at how we can merge using the `*` operator.
 
 ## test_merge.py
 
+Add the following code to the file and run pytest `pytest`. The test should fail.
+
+```python
+from functions.merge import merge,merge_list
+
+# Behviours:
+
+# 1. Merge a tuple
+
+def test_merge() -> None:
+    """
+    Tests demonstrating how to merge using *.
+    """    
+    # given
+    test_wrapper = None
+    test_data_a = (1,2,3)
+    test_data_b = (4,5,6)
+
+    # when
+    test_wrapper = merge(test_data_a, test_data_b)
+    
+    # then
+    assert test_wrapper == (*test_data_a,*test_data_b)
+
+def test_merge_list() -> None:
+    """
+    Tests demonstrating how to merge using *, transforming into list.
+    """    
+    # given
+    test_wrapper = None
+    test_data_a = (1,2,3)
+    test_data_b = (4,5,6)
+
+    # when
+    test_wrapper = merge_list(test_data_a, test_data_b)
+    
+    # then
+    assert test_wrapper == [*test_data_a,*test_data_b]
+```
+
+## merge.py
+
+Add the following code to the file and run pytest `pytest`. The test should pass.
+
+```python
+def merge(data_a: any, data_b: any) -> tuple:
+    """
+    Demonstrates the use of packing operator * to merge.
+    """
+    merged = (*data_a,*data_b)
+    return merged
+
+def merge_list(data_a: any, data_b: any) -> tuple:
+    """
+    Demonstrates the use of packing operator * to merge list
+    """
+    merged_list = [*data_a,*data_b]
+    return merged_list
+
+```
+
+The above is an example of how we can merge tuples to for a larger tuple or list.
+
