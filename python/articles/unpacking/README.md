@@ -312,3 +312,9 @@ def drop(data: tuple) -> tuple[any,any]:
     return a,_
 ```
 
+Here we unpack the first result and the rest we unpack using `*_`. Off course we could also have done `a[0]` to get the first item from the tuple.
+
+Let's look at how we can merge using the `*` operator.
+
+## test_merge.py
+
