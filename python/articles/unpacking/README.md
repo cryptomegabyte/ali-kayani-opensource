@@ -266,3 +266,49 @@ def pack(data: any) -> tuple[any,any]:
 
 The * operator can be used to gather data.
 
+We have some data, let's say `(1,2,3.2,3.3,4.5)`, there is a requirement to drop the data after the first number. We could devise an algorithm that iterates through the tuple, detects the numbers after the first then removes them, we also can used the `*` operator to quickly drop the data we don't want, let see how.
+
+## test_drop.py
+
+Add the following code to the file and run pytest `pytest`. The test should fail.
+
+```python
+from functions.drop import drop
+
+# Behviours:
+
+# 1. Drop data.
+
+
+def test_drop() -> None:
+    """
+    Tests demonstrating how to unpack lists
+    """    
+    # given
+    test_wrapper = None
+    test_data = (1,2,3.2,3.3,4.5)
+
+    # when
+    test_wrapper = drop(test_data)
+    a, _ = test_wrapper
+    
+    # then
+    assert a == 1
+    assert _ == [2,3.2,3.3,4.5]
+
+```
+
+## drop.py
+
+Add the following code to the file and run pytest `pytest`. The test should pass.
+
+```python
+def drop(data: tuple) -> tuple[any,any]:
+    """
+    Demonstrates dropping of data using *_
+    """
+    a
+    a,*_ = data
+    return a,_
+```
+
