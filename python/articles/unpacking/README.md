@@ -363,14 +363,14 @@ def test_merge_list() -> None:
 Add the following code to the file and run pytest `pytest`. The test should pass.
 
 ```python
-def merge(data_a: any, data_b: any) -> tuple:
+def merge(data_a: tuple, data_b: tuple) -> tuple:
     """
     Demonstrates the use of packing operator * to merge.
     """
     merged = (*data_a,*data_b)
     return merged
 
-def merge_list(data_a: any, data_b: any) -> tuple:
+def merge_list(data_a: tuple, data_b: tuple) -> list:
     """
     Demonstrates the use of packing operator * to merge list
     """
@@ -380,4 +380,8 @@ def merge_list(data_a: any, data_b: any) -> tuple:
 ```
 
 The above is an example of how we can merge tuples to for a larger tuple or list.
+
+Now let's take a look at the unpacking dictionaries using `**`. Let's say you have a persons details, for arguments sake their name, phone and email. You wanted to form a phone book which consists of many people. We can use the `**` unpacking operator to merge dictionaries.
+
+Let's take a look at an example of how we can do that.
 
