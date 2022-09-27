@@ -2,7 +2,7 @@ from functions.drop import drop
 
 # Behviours:
 
-# 1. Drop data.
+# 1. Drop data using *_
 
 
 def test_drop() -> None:
