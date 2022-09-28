@@ -385,3 +385,70 @@ Now let's take a look at the unpacking dictionaries using `**`. Let's say you ha
 
 Let's take a look at an example of how we can do that.
 
+This is the data that we will hold in the dictionary:
+
+```
+| Name | Phone | E-mail |
+| Homer Simpson | 056375863 | homer.s@simpsons.com |
+| Wyatt Earp | 896832456 | wyatt.e@outlaw.com |
+```
+
+## test_phonebook.py
+
+Add the following code to the file and run pytest `pytest`. The test should fail.
+
+```python
+
+from functions.phonebook import phonebook
+
+# Behviours:
+
+# 1. Merge a dictionary
+
+def test_merge() -> None:
+    """
+    Tests demonstrating how to merge using **
+    """    
+    # given
+    test_wrapper = None
+
+    test_person_a = {
+        'name': 'Homer Simpson',
+        'phone': '056375863',
+        'email': 'homer.s@simpsons.com'
+    }
+    test_person_b = {
+        'name': 'Wyatt Earp',
+        'phone': '896832456 ',
+        'email': 'wyatt.e@outlaw.com'
+    }
+
+    # when
+    test_wrapper = phonebook(test_person_a, test_person_b)
+    
+    # then
+    assert test_wrapper == {
+        **test_person_a,
+        **test_person_b
+    }
+
+```
+
+## phonebook.py
+
+Add the following code to the file and run pytest `pytest`. The test should pass.
+
+```python
+def phonebook(person_a: dict, person_b: dict ) -> dict:
+    """
+    Demonstrates the use of unpacking dicts using **
+    """
+    return {
+        **person_a,
+        **person_b
+    }
+
+```
+
+It's quite simple to merge dictionries as you can see from the above example.
+
