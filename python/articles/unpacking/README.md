@@ -450,5 +450,5 @@ def phonebook(person_a: dict, person_b: dict ) -> dict:
 
 ```
 
-It's quite simple to merge dictionries as you can see from the above example.
+It's quite simple to merge dictionaries as you can see from the above example.
 
