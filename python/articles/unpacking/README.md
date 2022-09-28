@@ -413,14 +413,14 @@ def test_merge() -> None:
     test_wrapper = None
 
     test_person_a = {
-        'name': 'Homer Simpson',
-        'phone': '056375863',
-        'email': 'homer.s@simpsons.com'
+        'name_a': 'Homer Simpson',
+        'phone_a': '056375863',
+        'email_a': 'homer.s@simpsons.com'
     }
     test_person_b = {
-        'name': 'Wyatt Earp',
-        'phone': '896832456 ',
-        'email': 'wyatt.e@outlaw.com'
+        'name_b': 'Wyatt Earp',
+        'phone_b': '896832456 ',
+        'email_b': 'wyatt.e@outlaw.com'
     }
 
     # when
@@ -450,5 +450,24 @@ def phonebook(person_a: dict, person_b: dict ) -> dict:
 
 ```
 
-It's quite simple to merge dictionaries as you can see from the above example.
+It's quite simple to merge dictionaries as you can see from the above example. Do keep in mind that the keys will have to be unique, if not they will be overridden by the last value.
 
+One last point, in the example below I have shown how you can unpack within a foor loop.
+
+```python
+
+phonebook = [
+    ('Arnold S', '07646569007'),
+    ('Jerry R', '873658766'),
+]
+
+for name,phone in phonebook:
+    print(f"{name}: {phone}")
+
+```
+
+You can do the same with dictionaries.  
+
+# Summary
+
+Unpacking is a powerful technique that can simply a complex problem. I have shown how it can be used in a number of different scenarios.
