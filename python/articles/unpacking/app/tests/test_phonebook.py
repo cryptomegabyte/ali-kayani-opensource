@@ -12,14 +12,14 @@ def test_merge() -> None:
     test_wrapper = None
 
     test_person_a = {
-        'name': 'Homer Simpson',
-        'phone': '056375863',
-        'email': 'homer.s@simpsons.com'
+        'name_a': 'Homer Simpson',
+        'phone_a': '056375863',
+        'email_a': 'homer.s@simpsons.com'
     }
     test_person_b = {
-        'name': 'Wyatt Earp',
-        'phone': '896832456 ',
-        'email': 'wyatt.e@outlaw.com'
+        'name_b': 'Wyatt Earp',
+        'phone_b': '896832456 ',
+        'email_b': 'wyatt.e@outlaw.com'
     }
 
     # when
