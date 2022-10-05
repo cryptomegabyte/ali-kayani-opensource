@@ -13,3 +13,7 @@ I dive right into the interesting world of args and kwargs.
 # [Unpacking](../articles/unpacking/)
 
 I look into the murky world of unpacking via the use of the `*`, `**` operators.
+
+#[Generators]()
+
+...Working on it...
