@@ -27,8 +27,19 @@ app/
 |----__init__.py
 |----test_fibonacci.py
 |--src/
-|--__init__.py
-|--fibonacci.py
+|----__init__.py
+|----fibonacci.py
 |--requirements.txt
 ```
+
+## requirements.txt
+
+Issue the follwing commands at the command prompt:
+
+`echo "pytest" >> requirements.txt`
+`python -m venv venv`
+`. venv/bin/activate`
+`python -m pip install -r requirements.txt`
+
+The above commands will create a requirements file (if it does not exist), create a venv, activate the venv then finally install pytest.
 
