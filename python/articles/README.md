@@ -14,6 +14,6 @@ I dive right into the interesting world of args and kwargs.
 
 I look into the murky world of unpacking via the use of the `*`, `**` operators.
 
-#[Generators]()
+# [Generators](../articles/generators/)
 
 ...Working on it...
