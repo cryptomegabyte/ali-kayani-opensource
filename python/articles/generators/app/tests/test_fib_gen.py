@@ -11,15 +11,14 @@ def test_fib_gen() -> None:
     test_wrapper = fib_gen(5)
     
     # then
-
-    test_fib_value = next()
+    test_fib_value = next(test_wrapper)
     assert test_fib_value == 0
-    test_fib_value = next()
+    test_fib_value = next(test_wrapper)
     assert test_fib_value == 1
-    test_fib_value = next()
+    test_fib_value = next(test_wrapper)
     assert test_fib_value == 1
-    test_fib_value = next()
+    test_fib_value = next(test_wrapper)
     assert test_fib_value == 2
-    test_fib_value = next()
+    test_fib_value = next(test_wrapper)
     assert test_fib_value == 3
 
