@@ -6,8 +6,8 @@ def fib_gen(x:int) -> Iterator[int]:
     Calculates the fib sequence given a integer
     input:
         x: int
-    output:
-        result: list of fib numbers
+    return:
+        value: yield fib number
     """
     a = 0
     b = 1
