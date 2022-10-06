@@ -167,7 +167,7 @@ def fib_gen(x:int) -> Iterator[int]:
 
 Run `pytest` and the tests should pass.
 
-You may have noticed a difference. Before in the original function I used `return`; return ends execution immediately and returns the function. `yield` pauses the function execution and returns a value. Notice in the test i am calling a `next` function.
+You may have noticed a difference. Before in the original function I used `return`; return ends execution immediately and returns the list of values. `yield` pauses the function execution and returns a value. Notice in the test i am calling a `next` function.
 
 This `next` function tells the function to give the next value. Simple. 
 
