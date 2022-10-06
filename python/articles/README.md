@@ -16,4 +16,4 @@ I look into the murky world of unpacking via the use of the `*`, `**` operators.
 
 # [Generators](../articles/generators/)
 
-...Working on it...
+Generators are cool, here I examine what they are and how they can be used.
