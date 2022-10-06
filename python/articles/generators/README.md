@@ -95,3 +95,82 @@ Here we used 5 as an input which is a relatively small number. What if we wanted
 Generators are memory efficient. When used they can give back the result one number at a time. The whole list is not stored, we ask for a number and it is given to us.
 
 Let's look at an example.
+
+Add the following two files to the app
+
+```bash
+app/
+|--tests/
+|----__init__.py
+|----test_fibonacci.py
+|----test_fib_gen.py <<< add >>>
+|--src/
+|----__init__.py
+|----fibonacci.py
+|----fib_gen.py <<< add >>>
+|--requirements.txt
+```
+
+## test_fib_gen.py
+
+```python
+from src.fib_gen import fib_gen
+
+# Behaviours
+# 1. Should calculate the fib sequence given a integer
+
+def test_fib_gen() -> None:
+    # given
+    test_wrapper = None
+
+    # when
+    test_wrapper = fib_gen(5)
+    
+    # then
+    test_fib_value = next(test_wrapper)
+    assert test_fib_value == 0
+    test_fib_value = next(test_wrapper)
+    assert test_fib_value == 1
+    test_fib_value = next(test_wrapper)
+    assert test_fib_value == 1
+    test_fib_value = next(test_wrapper)
+    assert test_fib_value == 2
+    test_fib_value = next(test_wrapper)
+    assert test_fib_value == 3
+
+```
+
+Run `pytest` and the test should fail.
+
+## fib_gen.py
+
+```python
+from typing import Iterator
+
+
+def fib_gen(x:int) -> Iterator[int]:
+    """
+    Calculates the fib sequence given a integer
+    input:
+        x: int
+    output:
+        result: list of fib numbers
+    """
+    a = 0
+    b = 1
+
+    for number in range(x):
+        yield(a)
+        a,b = b, a+b
+
+```
+
+Run `pytest` and the tests should pass.
+
+You may have noticed a difference. Before in the original function I used `return`; return ends execution immediately and returns the function. `yield` pauses the function execution and returns a value. Notice in the test i am calling a `next` function.
+
+This `next` function tells the function to give the next value. Simple. 
+
+# Summary
+
+Generators are much more memory efficient, they can be used in a wide variety of use cases to pause the execution of a function.
