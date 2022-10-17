@@ -17,6 +17,10 @@ software/
 
 # Python/
 
+## [algorithms](python/algorithms/)/
+
+I look at interesting algorithms.
+
 ## [articles](python/articles/)/
 
 In depth articles that discuss certain python topics.
