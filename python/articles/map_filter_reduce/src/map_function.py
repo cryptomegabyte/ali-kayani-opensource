@@ -63,7 +63,7 @@ def map_function_f(numbers_a: list[int], numbers_b: list[int]) -> list[int]:
     input:
       numbers: list: list of numbers
     return:
-      list: absolute numbers
+      list: flattened list of summed numbers
     """
 
     return list(map(lambda x,y: x + y, numbers_a, numbers_b))
