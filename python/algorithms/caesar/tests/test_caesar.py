@@ -19,7 +19,5 @@ def test_caesar(message: str, encoded_string: str) -> None:
     # when
     test_wrapper = caesar(message)
 
-    print(test_wrapper)
-
     # then
     assert test_wrapper == encoded_string
