@@ -20,4 +20,4 @@ Generators are cool, here I examine what they are and how they can be used.
 
 # [Map_Filter_Reduce](../articles/map_filter_reduce/)
 
-Map, filter & reduce are fundamental are central to functional programming.
+Map, filter & reduce are fundamental to functional programming. I examine these here.
