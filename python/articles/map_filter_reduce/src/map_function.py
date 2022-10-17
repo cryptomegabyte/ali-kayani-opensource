@@ -3,7 +3,7 @@ map(function, iterable[, iterable1, iterable2,..., iterableN])
 
 """
 
-def map_function(numbers: list) -> list[int]:
+def map_function_a(numbers: list) -> list[int]:
     """
     map function: raise to the power of each number
     input:

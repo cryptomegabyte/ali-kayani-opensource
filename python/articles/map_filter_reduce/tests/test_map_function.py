@@ -1,5 +1,5 @@
 import pytest
-from src.map_function import map_function
+from src.map_function import map_function_a
 """
 Tests for the map function
 
@@ -13,7 +13,7 @@ def test_map_function() -> None:
     test_wrapper = None
 
     # when
-    test_wrapper = map_function([1,2,3,4,5])
+    test_wrapper = map_function_a([1,2,3,4,5])
 
     # then
     assert test_wrapper == [1, 4, 27, 256, 3125]
