@@ -1,5 +1,5 @@
 import pytest
-
+from src.map_function import map_function
 """
 Tests for the map function
 
