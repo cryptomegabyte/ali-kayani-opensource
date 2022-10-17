@@ -2,7 +2,8 @@ from src.map_function import (
     map_function_a,
     map_function_b,
     map_function_c,
-    map_function_d
+    map_function_d,
+    map_function_e
 )
 """
 Tests for the map function
@@ -12,7 +13,8 @@ Behaviours:
 1. Should produce a list of squared numbers
 2. Should convert a list of string numbers into ints
 3. Should convert a list of negative numbers into positive ones
-4. Should convert a list of ints tp floats
+4. Should convert a list of ints to floats
+5. Should count the number of letters in a string and return them.
 """
 
 def test_map_functions() -> None:
@@ -43,4 +45,8 @@ def test_map_functions() -> None:
     # then
     assert test_wrapper == [1.0,2.0,3.0,4.0,5.0]
 
+    # when
+    test_wrapper = map_function_e(["alpha", "beta", "charlie"])
 
+    # then
+    assert test_wrapper == [5,4,7]
