@@ -19,7 +19,18 @@ def map_function_b(string_numbers: list) -> list[int]:
     input:
       numbers: list: list of numbers
     return:
-      list: list of powered numbers
+      list: list of ints
     """
 
     return list(map(int, string_numbers))
+
+def map_function_c(string_numbers: list) -> list[int]:
+    """
+    map function: converts strings to ints
+    input:
+      numbers: list: list of numbers
+    return:
+      list: absoolute numbers
+    """
+
+    return list(map(abs, string_numbers))
