@@ -10,6 +10,7 @@ Behaviours:
 
 1. Should produce a list of squared numbers
 2. Should convert a list of string numbers into ints
+3. Should convert a list of negative numbers into positive ones
 """
 
 def test_map_functions() -> None:
@@ -33,3 +34,4 @@ def test_map_functions() -> None:
 
     # then
     assert test_wrapper == [10,9,8,7,6,5]
+
