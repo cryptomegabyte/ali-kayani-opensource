@@ -1,6 +1,7 @@
 from src.map_function import (
     map_function_a,
-    map_function_b
+    map_function_b,
+    map_function_c
 )
 """
 Tests for the map function
@@ -27,3 +28,8 @@ def test_map_functions() -> None:
     # then
     assert test_wrapper == [1,2,3,4,5]
 
+    # when
+    test_wrapper = map_function_c([-10,-9,-8,-7,-6,-5])
+
+    # then
+    assert test_wrapper == [10,9,8,7,6,5]
