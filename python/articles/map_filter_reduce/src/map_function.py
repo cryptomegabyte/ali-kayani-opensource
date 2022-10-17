@@ -12,3 +12,14 @@ def map_function_a(numbers: list) -> list[int]:
       list: list of powered numbers
     """
     return list(map(lambda x: x**x, numbers))
+
+def map_function_b(string_numbers: list) -> list[int]:
+    """
+    map function: converts strings to ints
+    input:
+      numbers: list: list of numbers
+    return:
+      list: list of powered numbers
+    """
+
+    return list(map(int, string_numbers))
