@@ -45,3 +45,14 @@ def map_function_d(string_numbers: list[int]) -> list[float]:
     """
 
     return list(map(float, string_numbers))
+
+def map_function_e(string_numbers: list[str]) -> list[int]:
+    """
+    map function: converts strings to ints
+    input:
+      numbers: list: list of numbers
+    return:
+      list: absolute numbers
+    """
+
+    return list(map(len, string_numbers))
