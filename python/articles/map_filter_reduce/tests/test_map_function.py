@@ -1,4 +1,3 @@
-import pytest
 from src.map_function import (
     map_function_a,
     map_function_b
@@ -9,6 +8,7 @@ Tests for the map function
 Behaviours:
 
 1. Should produce a list of squared numbers
+2. Should convert a list of string numbers into ints
 """
 
 def test_map_functions() -> None:
@@ -26,3 +26,4 @@ def test_map_functions() -> None:
 
     # then
     assert test_wrapper == [1,2,3,4,5]
+
