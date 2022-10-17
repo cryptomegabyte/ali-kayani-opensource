@@ -4,7 +4,7 @@ import pytest
 """
 Tests for caesar function
 
-Behavious:
+Behaviours:
 - Should receive a string
 - Encode the string
 - Return the encoded string
