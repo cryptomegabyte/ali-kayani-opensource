@@ -6,7 +6,8 @@ from src.map_function import (
     map_function_e,
     map_function_f,
     map_function_g,
-    filter_function
+    filter_function,
+    reduce_function
 )
 """
 Tests for the map function
@@ -73,3 +74,9 @@ def test_map_functions() -> None:
 
     # then
     assert test_wrapper == [5,6,8]
+
+    # when
+    test_wrapper = reduce_function([1,2,3,4,5])
+
+    # then
+    assert test_wrapper == 15
