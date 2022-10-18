@@ -3,6 +3,9 @@ map(function, iterable[, iterable1, iterable2,..., iterableN])
 
 """
 
+from functools import reduce
+
+
 def map_function_a(numbers: list[int]) -> list[int]:
     """
     map function: raise to the power of each number
@@ -67,3 +70,16 @@ def map_function_f(numbers_a: list[int], numbers_b: list[int]) -> list[int]:
     """
 
     return list(map(lambda x,y: x + y, numbers_a, numbers_b))
+
+def map_function_g(words: list[str]) -> list[str]:
+    """
+    map function: removes "."
+    input:
+      numbers: list: list of strings
+    return:
+      list: list of string with . removed.
+    """
+
+    return list(map(lambda x: x.strip("."), words))
+
+  
