@@ -82,4 +82,14 @@ def map_function_g(words: list[str]) -> list[str]:
 
     return list(map(lambda x: x.strip("."), words))
 
+def filter_function(numbers: list[int]) -> list[int]:
+    """
+    map function: removes "."
+    input:
+      numbers: list: list of ints
+    return:
+      list: list of ints which are greater than zero
+    """
+
+    return list(filter(lambda x: x > 0, numbers))
   
