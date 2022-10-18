@@ -84,7 +84,7 @@ def map_function_g(words: list[str]) -> list[str]:
 
 def filter_function(numbers: list[int]) -> list[int]:
     """
-    map function: removes "."
+    filter function: filters numbers > 0
     input:
       numbers: list: list of ints
     return:
@@ -93,3 +93,13 @@ def filter_function(numbers: list[int]) -> list[int]:
 
     return list(filter(lambda x: x > 0, numbers))
   
+def reduce_function(numbers: list[int]) -> int:
+  """
+  reduce function: adds numbers
+  input:
+    numbers: list: list of ints
+  return:
+    list: list of ints which are greater than zero
+  """
+
+  return reduce(lambda x,y: x+y,numbers)
