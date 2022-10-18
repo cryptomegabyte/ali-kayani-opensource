@@ -5,7 +5,8 @@ from src.map_function import (
     map_function_d,
     map_function_e,
     map_function_f,
-    map_function_g
+    map_function_g,
+    filter_function
 )
 """
 Tests for the map function
@@ -17,6 +18,8 @@ Behaviours:
 3. Should convert a list of negative numbers into positive ones
 4. Should convert a list of ints to floats
 5. Should count the number of letters in a string and return them.
+6. Should remove "." from a list of strings.
+7. Should use filter to filer out negative numbers.
 """
 
 def test_map_functions() -> None:
@@ -64,3 +67,9 @@ def test_map_functions() -> None:
 
     # then
     assert test_wrapper == ["Testing","Moon"]
+
+    # when
+    test_wrapper = filter_function([-10,5,6,8,-2,-5600,-8])
+
+    # then
+    assert test_wrapper == [5,6,8]
