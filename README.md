@@ -8,6 +8,7 @@ Feel free to use anything you see here in your own projects.
 
 ```
 python/
+    algorithms/
     articles/
     challenges/
 software/
