@@ -2,8 +2,7 @@ from src.set import set_function
 """
 Tests for sets.
 Behaviours:
-1. Should create a set from an list and retur it.
-2. Should create a set of unique items and return it.
+1. Should create a set from an iterable and return it.
 """
 
 def test_set_function() -> None:
