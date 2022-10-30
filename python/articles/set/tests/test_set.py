@@ -7,6 +7,7 @@ Behaviours:
 """
 
 def test_set_function() -> None:
+    
     # Given
     test_wrapper = None
 
@@ -51,3 +52,11 @@ def test_set_function() -> None:
 
     # then
     assert test_wrapper == {'H','e','l','l','o'}
+
+    # When
+    test_wrapper = set_function("Hello")
+
+    # then
+    assert len(test_wrapper) == 4
+    assert 'H' in test_wrapper
+
