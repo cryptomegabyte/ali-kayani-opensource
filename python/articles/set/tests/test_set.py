@@ -14,13 +14,25 @@ def test_set_function() -> None:
     test_wrapper = set_function({})
 
     # then
-    assert type(test_wrapper) == set
+    assert type(test_wrapper) is set
 
     # When
     test_wrapper = set_function([1,2,3,4])
 
     # then
-    assert type(test_wrapper) == set
+    assert type(test_wrapper) is set
+
+    # When
+    test_wrapper = set_function([1,2,3,4])
+
+    # then
+    assert bool(test_wrapper) is True
+
+    # When
+    test_wrapper = set_function({})
+
+    # then
+    assert bool(test_wrapper) is False
 
     # When
     test_wrapper = set_function([1,2,3,4,5,1,2,3,4,5])
@@ -39,4 +51,3 @@ def test_set_function() -> None:
 
     # then
     assert test_wrapper == {'H','e','l','l','o'}
-
