@@ -16,4 +16,8 @@ def test_set_function() -> None:
     # then
     assert type(test_wrapper) is set
 
+    # When
+    test_wrapper = set_function([1,2,3,4,5,1,2,3,4,5])
 
+    # then
+    assert test_wrapper == {1,2,3,4,5}
