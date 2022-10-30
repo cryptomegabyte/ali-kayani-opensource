@@ -1,0 +1,19 @@
+from src.set import set_function
+"""
+Tests for sets.
+Behaviours:
+1. Should create a set from an list and retur it.
+2. Should create a set of unique items and return it.
+"""
+
+def test_set_function() -> None:
+    # Given
+    test_wrapper = None
+
+    # When
+    test_wrapper = set_function([1,2,3,4])
+
+    # then
+    assert type(test_wrapper) is set
+
+
