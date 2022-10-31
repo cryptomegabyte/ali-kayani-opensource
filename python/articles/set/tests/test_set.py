@@ -1,6 +1,8 @@
 from src.set import (
     set_function,
-    set_function_union
+    set_function_union,
+    set_function_intersection,
+    set_function_difference
 )
 """
 Tests for sets.
@@ -61,3 +63,14 @@ def test_set_function() -> None:
     # then
     assert test_wrapper == {1,2,3,4,5,6,7,8,9,10}
 
+    # When
+    test_wrapper = set_function_intersection({1,2,3,4,5},{3,4,5,6,7,8,9,10})
+
+    # then
+    assert test_wrapper == {3,4,5}
+
+    # When
+    test_wrapper = set_function_difference({1,2,3,4,5},{3,4,5,6,7,8,9,10,11})
+
+    # then
+    assert test_wrapper == {1,2}
