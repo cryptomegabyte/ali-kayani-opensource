@@ -1,4 +1,7 @@
-from src.set import set_function
+from src.set import (
+    set_function,
+    set_function_union
+)
 """
 Tests for sets.
 Behaviours:
@@ -53,9 +56,8 @@ def test_set_function() -> None:
     assert test_wrapper == {'H','e','l','l','o'}
 
     # When
-    test_wrapper = set_function("Hello")
+    test_wrapper = set_function_union({1,2,3,4,5},{6,7,8,9,10})
 
     # then
-    assert len(test_wrapper) == 4
-    assert 'H' in test_wrapper
+    assert test_wrapper == {1,2,3,4,5,6,7,8,9,10}
 
