@@ -13,3 +13,7 @@ Each algorithm can be run by simply by:
 ## [Caesar](/python/algorithms/caesar/)
 
 Caesar encoded his messages to his armies. Each letter in the alphabet was shifted by three. Here, I use a test first approach and examine how `Caesar's` algorithm can be implemented.
+
+## [Factorial](/python/algorithms/factorial/)
+
+A function which calculates the factorial given a number without using recursion.
