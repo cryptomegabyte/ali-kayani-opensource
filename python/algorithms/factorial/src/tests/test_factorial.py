@@ -8,7 +8,7 @@ Behaviours
 1. Should calculate the correct factorial given a number
 """
 
-@pytest.mark.parametrize("number,result", [(4,24)])
+@pytest.mark.parametrize("number,result", [(4,24),(0,1),(5,120)])
 def test_factorial(number: int, result: int) -> None:
     # given
     test_wrapper = None
