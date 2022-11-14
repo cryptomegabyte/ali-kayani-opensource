@@ -1,4 +1,4 @@
-from src.app.factorial import factorial
+from app.factorial import factorial
 
 """
 Tests for factorial function
