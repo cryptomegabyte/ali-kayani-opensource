@@ -16,7 +16,6 @@ def test_binary_search(x: list[int], y: int, r: int) -> None:
 
     # when
     test_wrapper = binary_search(x,y)
-    print(f"test w: {test_wrapper}")
 
     # then
     assert test_wrapper == r
