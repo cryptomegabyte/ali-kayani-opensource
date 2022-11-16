@@ -7,14 +7,16 @@ Tests for binary search function
 Behaviours:
 
 1. Should return index of search item.
+2. Should return a message if element not found.
 """
-@pytest.mark.parametrize("x,y,r",[([4],4,0)])
+@pytest.mark.parametrize("x,y,r",[([4],4,0),([1,2,3,4,5],3,2)])
 def test_binary_search(x: list[int], y: int, r: int) -> None:
     # given
     test_wrapper = None
 
     # when
     test_wrapper = binary_search(x,y)
+    print(f"test w: {test_wrapper}")
 
     # then
     assert test_wrapper == r
