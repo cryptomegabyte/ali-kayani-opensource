@@ -17,3 +17,7 @@ Caesar encoded his messages to his armies. Each letter in the alphabet was shift
 ## [Factorial](/python/algorithms/factorial/)
 
 A function which calculates the factorial given a number without using recursion.
+
+## [Binary Search](/python/algorithms/binary_search/)
+
+A function which calculates finds the index of an element using the binary search technique.
